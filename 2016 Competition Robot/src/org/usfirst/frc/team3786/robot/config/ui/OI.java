@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3786.robot.config.ui;
 
 import edu.wpi.first.wpilibj.buttons.Button;
-import org.usfirst.frc.team3786.robot.commands.ExampleCommand;
+import org.usfirst.frc.team3786.robot.commands.Drive;
 
 /**
  * This class is the glue that binds the controls on the physical operator
