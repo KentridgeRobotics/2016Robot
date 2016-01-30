@@ -2,7 +2,7 @@ package org.usfirst.frc.team3786.robot.config.ui;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class PracticeConfig extends UIConfig{
+public class SingleJoystick extends UIConfig{
 
 	@Override
 	public Joystick getStickOne() {

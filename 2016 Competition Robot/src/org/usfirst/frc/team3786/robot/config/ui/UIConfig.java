@@ -7,7 +7,7 @@ public abstract class UIConfig {
 	
 	public static UIConfig get() {
 		if(instance == null)
-			instance = new PracticeConfig();
+			instance = new SingleJoystick();
 		return instance;
 	}
 	

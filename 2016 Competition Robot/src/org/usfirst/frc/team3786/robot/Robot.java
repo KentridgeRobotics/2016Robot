@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3786.robot.commands.Drive;
-import org.usfirst.frc.team3786.robot.config.ui.OI;
+import org.usfirst.frc.team3786.robot.config.ui.TankDrive;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static final DriveTrain exampleSubsystem = new DriveTrain();
-	public static OI oi;
+	public static final DriveTrain driveTrain = new DriveTrain();
+	public static TankDrive oi;
 
     Command autonomousCommand;
     SendableChooser chooser;
@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-		oi = new OI();
+		oi = new TankDrive();
         chooser = new SendableChooser();
         chooser.addDefault("Default Auto", new Drive());
 //        chooser.addObject("My Auto", new MyAutoCommand());
