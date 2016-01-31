@@ -1,7 +1,5 @@
 package org.usfirst.frc.team3786.robot.config.ui;
 
-import edu.wpi.first.wpilibj.Joystick;
-
 public abstract class UIConfig {
 	private static UIConfig instance;
 	
@@ -11,7 +9,6 @@ public abstract class UIConfig {
 		return instance;
 	}
 	
-	public abstract Joystick getStickOne();
-	
-	public abstract Joystick getStickTwo();
+	public abstract double getLeftDrive();
+	public abstract double getRightDrive();
 }

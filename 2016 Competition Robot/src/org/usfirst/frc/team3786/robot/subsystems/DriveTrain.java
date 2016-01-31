@@ -11,47 +11,49 @@ public class DriveTrain extends Subsystem {
     
 	private static DriveTrain instance;
 	
-	private CANJaguar 	leftMotorOne, 
+	private CANJaguar	leftMotorOne, 
 						leftMotorTwo, 
 						rightMotorOne, 
 						rightMotorTwo;
 	
 		public DriveTrain() {
-		leftMotorOne = new CANJaguar(RobotConfig.get().getLeftDriveMotorOne());
-		leftMotorTwo = new CANJaguar(RobotConfig.get().getLeftDriveMotorTwo());
-		
-		leftMotorOne.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
-		
-		leftMotorTwo.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
-		
-		rightMotorOne = new CANJaguar(RobotConfig.get().getRightDriveMotorOne());
-		rightMotorTwo = new CANJaguar(RobotConfig.get().getRightDriveMotorTwo());
-		
-		rightMotorOne.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
-		
-		rightMotorTwo.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
-		
-		leftMotorOne.enable();
-		leftMotorTwo.enable();
-		
-		rightMotorOne.enable();
-		rightMotorOne.enable();
+			
+			leftMotorOne = new CANJaguar(RobotConfig.get().getLeftDriveMotorOne());
+			leftMotorTwo = new CANJaguar(RobotConfig.get().getLeftDriveMotorTwo());
+			
+			leftMotorOne.setPositionMode(CANJaguar.kQuadEncoder, 
+					RobotConfig.get().getCODES_PER_REV(),
+					RobotConfig.get().getDRIVE_P(), 
+					RobotConfig.get().getDRIVE_I(), 
+					RobotConfig.get().getDRIVE_D());
+			
+			leftMotorTwo.setPositionMode(CANJaguar.kQuadEncoder, 
+					RobotConfig.get().getCODES_PER_REV(),
+					RobotConfig.get().getDRIVE_P(), 
+					RobotConfig.get().getDRIVE_I(), 
+					RobotConfig.get().getDRIVE_D());
+			
+			
+			rightMotorOne = new CANJaguar(RobotConfig.get().getRightDriveMotorOne());
+			rightMotorTwo = new CANJaguar(RobotConfig.get().getRightDriveMotorTwo());
+			
+			rightMotorOne.setPositionMode(CANJaguar.kQuadEncoder, 
+					RobotConfig.get().getCODES_PER_REV(),
+					RobotConfig.get().getDRIVE_P(), 
+					RobotConfig.get().getDRIVE_I(), 
+					RobotConfig.get().getDRIVE_D());
+			
+			rightMotorTwo.setPositionMode(CANJaguar.kQuadEncoder, 
+					RobotConfig.get().getCODES_PER_REV(),
+					RobotConfig.get().getDRIVE_P(), 
+					RobotConfig.get().getDRIVE_I(), 
+					RobotConfig.get().getDRIVE_D());
+			
+			leftMotorOne.enable();
+			leftMotorTwo.enable();
+			
+			rightMotorOne.enable();
+			rightMotorOne.enable();
 	}
 	
 	public static DriveTrain get() {
