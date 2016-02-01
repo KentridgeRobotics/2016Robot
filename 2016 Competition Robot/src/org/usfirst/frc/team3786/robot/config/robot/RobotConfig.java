@@ -38,8 +38,7 @@ public abstract class RobotConfig {
 	
 	
 	//-------Shooter Mechanism Channels-------
-	public abstract int getLeftShooterFlyWheel();
-	public abstract int getRightShooterFlyWheel();
+	public abstract int getShooterWheels();
 		
 	public abstract int releaseServoLeft();
 	public abstract int releaseServoRight();

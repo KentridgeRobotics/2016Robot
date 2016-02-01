@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem{
 	
-	private Talon leftShooterWheel, rightShooterWheel;
+	private Talon shooterWheels;
 	private CANJaguar shooterAimMotor;
 	
 	//**************POSITIONS**************
@@ -17,8 +17,7 @@ public class Shooter extends Subsystem{
 	public static final double UP_POS = 0;
 	
 	public Shooter() {
-		leftShooterWheel = new Talon(RobotConfig.get().getLeftShooterFlyWheel());
-		rightShooterWheel = new Talon(RobotConfig.get().getRightShooterFlyWheel());
+		shooterWheels = new Talon(RobotConfig.get().getShooterWheels());
 		
 		shooterAimMotor = new CANJaguar(RobotConfig.get().ShooterAimLeftChannel());
 		
@@ -32,8 +31,7 @@ public class Shooter extends Subsystem{
 	}
 	
 	public void setShooterWheelSpeed(double speed) {
-		leftShooterWheel.set(speed);
-		rightShooterWheel.set(-speed);
+		shooterWheels.set(speed);
 	}
 	
 	public void setShooterAimPosition(double position) {

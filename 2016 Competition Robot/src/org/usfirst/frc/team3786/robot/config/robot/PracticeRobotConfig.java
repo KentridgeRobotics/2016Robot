@@ -17,8 +17,7 @@ public class PracticeRobotConfig extends RobotConfig{
 	private static final int ENCODER_CODES_PER_REVOLUTION = 360;
 	
 	//Shooter Mechanisms
-	private static final int LEFT_SHOOTER_FLY_WHEEL = 0;
-	private static final int RIGHT_SHOOTER_FLY_WHEEL =0;
+	private static final int SHOOTER_FLY_WHEEL = 0;
 	
 	private static final int RELEASE_MECH_LEFT = 0;
 	private static final int RELEASE_MECH_RIGHT = 0;
@@ -99,13 +98,8 @@ public class PracticeRobotConfig extends RobotConfig{
 	}
 
 	@Override
-	public int getLeftShooterFlyWheel() {
-		return LEFT_SHOOTER_FLY_WHEEL;
-	}
-
-	@Override
-	public int getRightShooterFlyWheel() {
-		return RIGHT_SHOOTER_FLY_WHEEL;
+	public int getShooterWheels() {
+		return SHOOTER_FLY_WHEEL;
 	}
 
 	@Override
