@@ -16,7 +16,8 @@ public class SingleJoystick extends UIConfig{
 	private static final int SHOOTER_WHEEL_SPEED_AXIS= 0;
 	private static final int EXTEND_HOOK= 0;
 	private static final int PULL_HOOK= 0;
-		
+	
+	private static final double AIM_INCREMENT = 1.0;
 	//******************END******************
 	
 	private static final double reductionFactor = 1.0;
@@ -70,6 +71,11 @@ public class SingleJoystick extends UIConfig{
 		return stick.getRawAxis(SHOOTER_WHEEL_SPEED_AXIS);
 	}
 
+	@Override
+	public double getAIM_INCREMENT() {
+		return AIM_INCREMENT;
+	}
+	
 	@Override
 	public Button extendHookButton() {
 		return (new JoystickButton(stick, EXTEND_HOOK));

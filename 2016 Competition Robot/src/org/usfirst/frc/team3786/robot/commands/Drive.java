@@ -3,13 +3,13 @@ package org.usfirst.frc.team3786.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-import org.usfirst.frc.team3786.robot.Robot;
+import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 
 public class Drive extends Command {
 
     public Drive() {
         // Use requires() here to declare subsystem dependencies
-        requires(Robot.driveTrain);
+        requires(DriveTrain.get());
     }
 
     // Called just before this Command runs the first time

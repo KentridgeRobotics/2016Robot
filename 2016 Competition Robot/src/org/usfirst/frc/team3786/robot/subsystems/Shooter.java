@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3786.robot.subsystems;
 
-import org.usfirst.frc.team3786.robot.commands.ShootCommand;
+import org.usfirst.frc.team3786.robot.commands.AimUpCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Shooter extends Subsystem{
+	
+	private static Shooter instance;
 	
 	private Talon shooterWheels;
 	private CANJaguar shooterAimMotor;
@@ -30,6 +32,12 @@ public class Shooter extends Subsystem{
 		shooterAimMotor.enable();
 	}
 	
+	public static Shooter getInstance() {
+		if(instance == null)
+			instance = new Shooter();
+		return instance;
+	}
+	
 	public void setShooterWheelSpeed(double speed) {
 		shooterWheels.set(speed);
 	}
@@ -50,9 +58,17 @@ public class Shooter extends Subsystem{
 		shooterAimMotor.set(UP_POS);
 	}
 	
+	public void stopShooterWheels() {
+		shooterWheels.set(0);
+	}
+	
+	public void stopAimMotor() {
+		shooterAimMotor.set(getShooterAimPosition());
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ShootCommand());
+		setDefaultCommand(new AimUpCommand());
 	}
 
 }

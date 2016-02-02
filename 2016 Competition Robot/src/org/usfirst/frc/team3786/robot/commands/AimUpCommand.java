@@ -1,11 +1,14 @@
 package org.usfirst.frc.team3786.robot.commands;
 
+import org.usfirst.frc.team3786.robot.subsystems.Shooter;
+
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShootCommand extends Command{
-
+public class AimUpCommand extends Command{
+	
 	@Override
 	protected void initialize() {
+		requires(Shooter.getInstance());
 	}
 
 	@Override

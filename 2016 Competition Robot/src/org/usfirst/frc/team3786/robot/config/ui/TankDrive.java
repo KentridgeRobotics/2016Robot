@@ -17,6 +17,8 @@ public class TankDrive extends UIConfig{
 	private static final int EXTEND_HOOK= 0;
 	private static final int PULL_HOOK= 0;
 	
+	private static final double AIM_INCREMENT = 1.0;
+	
 	//******************END******************
 	private Joystick leftStick, rightStick;
 	
@@ -65,6 +67,11 @@ public class TankDrive extends UIConfig{
 		return leftStick.getRawAxis(SHOOTER_WHEEL_SPEED_AXIS);
 	}
 
+	@Override
+	public double getAIM_INCREMENT() {
+		return AIM_INCREMENT;
+	}
+	
 	@Override
 	public Button extendHookButton() {
 		return (new JoystickButton(leftStick, EXTEND_HOOK));
