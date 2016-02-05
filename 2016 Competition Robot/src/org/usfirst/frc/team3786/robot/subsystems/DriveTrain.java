@@ -4,86 +4,54 @@ package org.usfirst.frc.team3786.robot.subsystems;
 import org.usfirst.frc.team3786.robot.commands.Drive;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
-import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
     
 	private static DriveTrain instance;
 	
-	private CANJaguar	leftMotorOne, 
-						leftMotorTwo, 
-						rightMotorOne, 
-						rightMotorTwo;
+	private Jaguar leftMotor, rightMotor;
+	
+	private Encoder leftEncoder, rightEncoder;
 	
 	public DriveTrain() {
-			
-		leftMotorOne = new CANJaguar(RobotConfig.get().getLeftDriveMotorOne());
-		leftMotorTwo = new CANJaguar(RobotConfig.get().getLeftDriveMotorTwo());
-			
-		leftMotorOne.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
+		leftEncoder = new Encoder(RobotConfig.getInstance().leftEncoderChan()[0], 
+				RobotConfig.getInstance().leftEncoderChan()[1]);
 		
-		leftMotorTwo.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
+		rightEncoder = new Encoder(RobotConfig.getInstance().rightEncoderChan()[0],
+				RobotConfig.getInstance().rightEncoderChan()[1]);
 		
+		leftMotor = new Jaguar(RobotConfig.getInstance().getLeftDriveMotor());
 		
-		rightMotorOne = new CANJaguar(RobotConfig.get().getRightDriveMotorOne());
-		rightMotorTwo = new CANJaguar(RobotConfig.get().getRightDriveMotorTwo());
-		
-		rightMotorOne.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
-		
-		rightMotorTwo.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(),
-				RobotConfig.get().getDRIVE_P(), 
-				RobotConfig.get().getDRIVE_I(), 
-				RobotConfig.get().getDRIVE_D());
-		
-		leftMotorOne.enable();
-		leftMotorTwo.enable();
-		
-		rightMotorOne.enable();
-		rightMotorOne.enable();
+		rightMotor = new Jaguar(RobotConfig.getInstance().getRightDriveMotor());
 	}
+		
 	
-	public static DriveTrain get() {
+	public static DriveTrain getInstance() {
 		if(instance == null)
 			instance = new DriveTrain();
 		return instance;
 	}
 	
-	public void setDrivePos(double left_position, double right_position) {		
-		leftMotorOne.set(left_position);
-		leftMotorOne.set(left_position);
-		
-		rightMotorOne.set(right_position);
-		rightMotorOne.set(right_position);
+	public void drive(double left_speed, double right_speed) {		
+		leftMotor.set(left_speed);
+		rightMotor.set(right_speed);
 	}
 	
-	public double getLeftPosition() {
-		return leftMotorOne.getPosition();
+	public double getLeftDistance() {
+		return leftEncoder.getDistance();
 	}
 	
-	public double getRightPosition() {
-		return rightMotorOne.getPosition();
+	public double getRightDistance() {
+		return rightEncoder.getDistance();
 	}
 	
 	public void STOP() {
-		leftMotorOne.set(getLeftPosition());
-		leftMotorTwo.set(getLeftPosition());
+		leftMotor.set(0);
 		
-		rightMotorOne.set(getRightPosition());
-		rightMotorTwo.set(getRightPosition());
+		rightMotor.set(0);
 	}
 	
     public void initDefaultCommand() {

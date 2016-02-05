@@ -9,9 +9,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team3786.robot.commands.AimDownCommand;
 import org.usfirst.frc.team3786.robot.commands.AimUpCommand;
 import org.usfirst.frc.team3786.robot.commands.Drive;
-import org.usfirst.frc.team3786.robot.config.ui.TankDrive;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
-import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -42,8 +40,8 @@ public class Robot extends IterativeRobot {
         System.out.println("Commands Successfully Initialized");
         
         System.out.println("Binding Command to Buttons");
-        UIConfig.get().aimDownButton().whileHeld(aimDownCommand);
-        UIConfig.get().aimUpButton().whileHeld(aimUpCommand);
+        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
+        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         System.out.println("Command Successfully Bound to Buttons");
         
         chooser = new SendableChooser();

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 public abstract class UIConfig {
 	private static UIConfig instance;
 		
-	public static UIConfig get() {
+	public static UIConfig getInstance() {
 		if(instance == null)
 			instance = new SingleJoystick();
 		return instance;

@@ -9,7 +9,7 @@ public class Drive extends Command {
 
     public Drive() {
         // Use requires() here to declare subsystem dependencies
-        requires(DriveTrain.get());
+        requires(DriveTrain.getInstance());
     }
 
     // Called just before this Command runs the first time

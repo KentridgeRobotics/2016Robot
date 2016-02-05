@@ -19,15 +19,15 @@ public class Shooter extends Subsystem{
 	public static final double UP_POS = 0;
 	
 	public Shooter() {
-		shooterWheels = new Talon(RobotConfig.get().getShooterWheels());
+		shooterWheels = new Talon(RobotConfig.getInstance().getShooterWheels());
 		
-		shooterAimMotor = new CANJaguar(RobotConfig.get().ShooterAimLeftChannel());
+		shooterAimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
 		shooterAimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.get().getCODES_PER_REV(), 
-				RobotConfig.get().getSHOOTER_P(), 
-				RobotConfig.get().getSHOOTER_I(), 
-				RobotConfig.get().getSHOOTER_D());
+				RobotConfig.getInstance().getCODES_PER_REV(), 
+				RobotConfig.getInstance().getSHOOTER_P(), 
+				RobotConfig.getInstance().getSHOOTER_I(), 
+				RobotConfig.getInstance().getSHOOTER_D());
 		
 		shooterAimMotor.enable();
 	}

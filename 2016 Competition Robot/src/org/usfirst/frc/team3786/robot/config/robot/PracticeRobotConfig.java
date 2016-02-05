@@ -16,6 +16,9 @@ public class PracticeRobotConfig extends RobotConfig{
 	private static final int DRIVE_D = 0;
 	private static final int ENCODER_CODES_PER_REVOLUTION = 360;
 	
+	private static final int[] LEFT_ENCODER_CHANS = {0,1}; //{A CHANNEL, B CHANNEL}
+	private static final int[] RIGHT_ENCODER_CHANS = {2,3};//{A CHANNEL, B CHANNEL}
+	
 	//Shooter Mechanisms
 	private static final int SHOOTER_FLY_WHEEL = 0;
 	
@@ -78,23 +81,23 @@ public class PracticeRobotConfig extends RobotConfig{
 	}
 	
 	@Override
-	public int getLeftDriveMotorOne() {
+	public int[] leftEncoderChan() {
+		return LEFT_ENCODER_CHANS;
+	}
+	
+	@Override
+	public int[] rightEncoderChan() {
+		return RIGHT_ENCODER_CHANS;
+	}
+	
+	@Override
+	public int getLeftDriveMotor() {
 		return LEFT_DRIVE_MOTOR_ONE;
 	}
 
 	@Override
-	public int getLeftDriveMotorTwo() {
-		return LEFT_DRIVE_MOTOR_TWO;
-	}
-
-	@Override
-	public int getRightDriveMotorOne() {
+	public int getRightDriveMotor() {
 		return RIGHT_DRIVE_MOTOR_ONE;
-	}
-
-	@Override
-	public int getRightDriveMotorTwo() {
-		return RIGHT_DRIVE_MOTOR_TWO;
 	}
 
 	@Override
@@ -118,12 +121,7 @@ public class PracticeRobotConfig extends RobotConfig{
 	}
 
 	@Override
-	public int ShooterAimRightChannel() {
-		return ELEVATION_RIGHT;
-	}
-
-	@Override
-	public int ShooterAimLeftChannel() {
+	public int ShooterAimChannel() {
 		return ELEVATION_LEFT;
 	}
 

@@ -9,7 +9,7 @@ public abstract class RobotConfig {
 	
 	public static RobotConfig instance;
 	
-	public static RobotConfig get() {
+	public static RobotConfig getInstance() {
 		if(instance == null)
 			instance = new PracticeRobotConfig();
 		return instance;
@@ -20,6 +20,8 @@ public abstract class RobotConfig {
 	public abstract int getDRIVE_I();
 	public abstract int getDRIVE_D();
 	public abstract int getCODES_PER_REV();
+	public abstract int[] leftEncoderChan();
+	public abstract int[] rightEncoderChan();
 	
 	//************Shooter AIM PID Values************
 	public abstract int getSHOOTER_P();
@@ -30,11 +32,9 @@ public abstract class RobotConfig {
 	//************Motor Channels and IDS************
 	
 	//------------Drive Motor IDs------------
-	public abstract int getLeftDriveMotorOne();
-	public abstract int getLeftDriveMotorTwo();
+	public abstract int getLeftDriveMotor();
 	
-	public abstract int getRightDriveMotorOne();
-	public abstract int getRightDriveMotorTwo();
+	public abstract int getRightDriveMotor();
 	
 	
 	//-------Shooter Mechanism Channels-------
@@ -46,8 +46,7 @@ public abstract class RobotConfig {
 	public abstract int ballEngagementID();
 	
 	//------Shooter Elevation Mechanisms------
-	public abstract int ShooterAimRightChannel();
-	public abstract int ShooterAimLeftChannel();
+	public abstract int ShooterAimChannel();
 	
 	public abstract int elevatationUpperLimitID();
 	public abstract int elevatationBottomLimitID();
