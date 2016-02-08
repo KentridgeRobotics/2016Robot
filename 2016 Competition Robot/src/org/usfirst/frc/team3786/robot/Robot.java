@@ -6,9 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3786.robot.commands.AimDownCommand;
-import org.usfirst.frc.team3786.robot.commands.AimUpCommand;
-import org.usfirst.frc.team3786.robot.commands.Drive;
+import org.usfirst.frc.team3786.robot.commands.drive.Drive;
+import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -35,8 +34,8 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	System.out.println("Initializing Commands");
-    	final AimDownCommand aimDownCommand = new AimDownCommand();
-        final AimUpCommand aimUpCommand = new AimUpCommand();
+    	ShooterAimCommand aimUpCommand = new ShooterAimCommand(true);
+    	ShooterAimCommand aimDownCommand = new ShooterAimCommand(false);
         System.out.println("Commands Successfully Initialized");
         
         System.out.println("Binding Command to Buttons");

@@ -1,15 +1,16 @@
-package org.usfirst.frc.team3786.robot.commands;
+package org.usfirst.frc.team3786.robot.commands.shooting;
 
 import org.usfirst.frc.team3786.robot.subsystems.Shooter;
+import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AimDownCommand extends Command{
+public class IntakeBall extends Command{
 
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
 		requires(Shooter.getInstance());
+		requires(ShooterAim.getInstance());
 	}
 
 	@Override
@@ -32,7 +33,8 @@ public class AimDownCommand extends Command{
 
 	@Override
 	protected void interrupted() {
-		Shooter.getInstance().setShooterAimPosition(Shooter.getInstance().getShooterAimPosition());
+		// TODO Auto-generated method stub
+		
 	}
 
 }
