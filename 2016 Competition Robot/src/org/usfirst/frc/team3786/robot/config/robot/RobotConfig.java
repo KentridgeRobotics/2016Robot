@@ -7,7 +7,7 @@ package org.usfirst.frc.team3786.robot.config.robot;
  */
 public abstract class RobotConfig {
 	
-	public static RobotConfig instance;
+	private static RobotConfig instance;
 	
 	public static RobotConfig getInstance() {
 		if(instance == null)

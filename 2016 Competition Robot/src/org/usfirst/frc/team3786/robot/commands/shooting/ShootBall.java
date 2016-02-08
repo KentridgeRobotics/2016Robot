@@ -6,11 +6,16 @@ import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShootBall extends  Command{
-
-	@Override
-	protected void initialize() {
+	
+	public ShootBall() {
 		requires(Shooter.getInstance());
 		requires(ShooterAim.getInstance());
+	}
+	
+	@Override
+	protected void initialize() {
+		if(Shooter.getInstance().checkForBall().get())
+			Shooter.getInstance().STOP();
 	}
 
 	@Override

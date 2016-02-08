@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3786.robot.commands.shooting;
 
 import org.usfirst.frc.team3786.robot.subsystems.Shooter;
+import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,13 +16,14 @@ public class ShooterAimCommand extends Command{
 	@Override
 	protected void initialize() {
 		// TODO Auto-generated method stub
-		requires(Shooter.getInstance());
+		requires(ShooterAim.getInstance());
 	}
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		
+		if(Shooter.getInstance().checkForBall().get() == true) {
+			
+		}
 	}
 
 	@Override
@@ -32,12 +34,10 @@ public class ShooterAimCommand extends Command{
 
 	@Override
 	protected void end() {
-		Shooter.getInstance().stopShooterWheels();
 	}
 
 	@Override
 	protected void interrupted() {
-		Shooter.getInstance().stopShooterWheels();
 	}
 
 }
