@@ -57,11 +57,14 @@ public class Robot extends IterativeRobot {
         System.out.println("Commands Successfully Initialized");
         
         System.out.println("Binding Command to Buttons");
+        
         //Binding Commands that deal with the Shooter
         UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
         UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
+        
         UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
         UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
+        
         System.out.println("Command Successfully Bound to Buttons");
         
         chooser = new SendableChooser();
