@@ -11,7 +11,8 @@ public class Shooter extends Subsystem{
 	
 	private static Shooter instance;
 	
-	private static final double shootSpeed = 0.5;
+	private static final double SHOOT_SPEED = 0.5;
+	private static final double INTAKE_SPEED = 0.3;
 	private static DigitalInput haveBall;
 	
 	private Talon shooterWheels;
@@ -35,8 +36,12 @@ public class Shooter extends Subsystem{
 		return haveBall;
 	}
 	
+	public void spinToIntakeSpeed() {
+		shooterWheels.set(INTAKE_SPEED);
+	}
+	
 	public void spinToShootSpeed() {
-		shooterWheels.set(shootSpeed);
+		shooterWheels.set(SHOOT_SPEED);
 	}
 	
 	public void STOP() {

@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3786.robot.commands.shooting;
 
+import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
 import org.usfirst.frc.team3786.robot.subsystems.Shooter;
-import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,17 +9,21 @@ public class ShootBall extends  Command{
 	
 	public ShootBall() {
 		requires(Shooter.getInstance());
-		requires(ShooterAim.getInstance());
+		requires(ReleaseMechanism.getInstance());
 	}
 	
 	@Override
 	protected void initialize() {
-		if(Shooter.getInstance().checkForBall().get())
-			Shooter.getInstance().STOP();
+		if(ReleaseMechanism.getInstance().isExtended())
+			ReleaseMechanism.getInstance().retract();
+		Shooter.getInstance().spinToShootSpeed();
 	}
 
 	@Override
 	protected void execute() {
+		ReleaseMechanism.getInstance().extend();
+		if(!Shooter.getInstance().checkForBall().get())
+			Shooter.getInstance().STOP();
 		
 	}
 
@@ -30,12 +34,14 @@ public class ShootBall extends  Command{
 
 	@Override
 	protected void end() {
-		
+		Shooter.getInstance().STOP();
+		ReleaseMechanism.getInstance().retract();
 	}
 
 	@Override
 	protected void interrupted() {
-		
+		Shooter.getInstance().STOP();
+		ReleaseMechanism.getInstance().retract();
 	}
 
 }

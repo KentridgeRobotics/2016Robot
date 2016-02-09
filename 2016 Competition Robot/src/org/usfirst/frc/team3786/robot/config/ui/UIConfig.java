@@ -16,10 +16,13 @@ public abstract class UIConfig {
 	public abstract double getLeftDrive();
 	public abstract double getRightDrive();
 	
-	public abstract Button shootButton();
+	public abstract Button shootBallButton();
+	public abstract Button intakeBallButton();
+	
 	public abstract Button aimUpButton();
 	public abstract Button aimDownButton();
-	public abstract Button travelAimButton();
+	
+	public abstract Button intakePositionButton();
 	public abstract Button shootPositionButton();
 	
 	public abstract double getShooterWheelSpeed();

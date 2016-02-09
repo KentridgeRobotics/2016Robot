@@ -9,9 +9,13 @@ public class TankDrive extends UIConfig{
 	//*************Button Config*************
 	
 	private static final int SHOOT_BUTTON = 0;
+	private static final int INTAKE_BUTTON = 0;
+	
 	private static final int AIM_UP_BUTTON = 0;
 	private static final int AIM_DOWN_BUTTON = 0;
-	private static final int TRAVEL_AIM_BUTTON= 0;
+	
+	private static final int TRAVEL_AIM_BUTTON = 0;
+	
 	private static final int SHOOT_POSITION_BUTTON= 0;
 	private static final int SHOOTER_WHEEL_SPEED_AXIS= 0;
 	private static final int EXTEND_HOOK= 0;
@@ -38,10 +42,15 @@ public class TankDrive extends UIConfig{
 	}
 
 	@Override
-	public Button shootButton() {
+	public Button shootBallButton() {
 		return (new JoystickButton(rightStick, SHOOT_BUTTON));
 	}
 
+	@Override
+	public Button intakeBallButton() {
+		return (new JoystickButton(leftStick, INTAKE_BUTTON));
+	}
+	
 	@Override
 	public Button aimUpButton() {
 		return (new JoystickButton(rightStick, AIM_UP_BUTTON));
@@ -53,7 +62,7 @@ public class TankDrive extends UIConfig{
 	}
 
 	@Override
-	public Button travelAimButton() {
+	public Button intakePositionButton() {
 		return (new JoystickButton(rightStick, TRAVEL_AIM_BUTTON));
 	}
 

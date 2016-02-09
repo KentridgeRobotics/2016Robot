@@ -16,19 +16,18 @@ public class IntakeBall extends Command{
 	
 	@Override
 	protected void initialize() {
-		
+		ReleaseMechanism.getInstance().retract();
+		ShooterAim.getInstance().intakePosition();
 	}
 
 	@Override
 	protected void execute() {
-		// TODO Auto-generated method stub
-		
+		Shooter.getInstance().spinToIntakeSpeed();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return Shooter.getInstance().checkForBall().get();
 	}
 
 	@Override

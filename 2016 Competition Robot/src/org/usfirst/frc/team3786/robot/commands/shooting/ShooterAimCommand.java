@@ -7,22 +7,38 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterAimCommand extends Command{
 	
-	private static boolean goUp;
+	
+	private static final int UP_MODE = 0;
+	private static final int DOWN_MODE = 1;
+	
+	private static final double INCREMENT = 1;
+	
+	private static int CURRENT_MODE;
 	
 	public ShooterAimCommand(boolean goUp) {
-		this.goUp = goUp;
+		requires(ShooterAim.getInstance());
+		if(goUp)
+			CURRENT_MODE = UP_MODE;
+		else
+			CURRENT_MODE = DOWN_MODE;
 	}
 	
 	@Override
 	protected void initialize() {
-		// TODO Auto-generated method stub
-		requires(ShooterAim.getInstance());
+		
 	}
 
 	@Override
 	protected void execute() {
-		if(Shooter.getInstance().checkForBall().get() == true) {
-			
+		switch(CURRENT_MODE) {
+			case UP_MODE:
+				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + INCREMENT);
+				break;
+			case DOWN_MODE:
+				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - INCREMENT);
+				break;
+			default:
+				
 		}
 	}
 
@@ -34,10 +50,12 @@ public class ShooterAimCommand extends Command{
 
 	@Override
 	protected void end() {
+		ShooterAim.getInstance().retainCurrentPosition();
 	}
 
 	@Override
 	protected void interrupted() {
+		ShooterAim.getInstance().retainCurrentPosition();
 	}
 
 }

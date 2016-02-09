@@ -14,7 +14,8 @@ public class ShooterAim extends Subsystem{
 	//**************POSITIONS**************
 	public static final double DOWN_POS = 0;
 	public static final double UP_POS = 0;
-	
+	public static final double SHOOT_POS = 0;
+		
 	public ShooterAim() {
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
@@ -35,6 +36,22 @@ public class ShooterAim extends Subsystem{
 	
 	public void setPosition(double position) {
 		aimMotor.set(position);
+	}
+	
+	public void upPosition() {
+		aimMotor.set(UP_POS);
+	}
+	
+	public void shootPosition() {
+		aimMotor.set(SHOOT_POS);
+	}
+	
+	public void intakePosition() {
+		aimMotor.set(DOWN_POS);
+	}
+	
+	public void retainCurrentPosition() {
+		aimMotor.set(aimMotor.getPosition());
 	}
 	
 	public double getPosition() {

@@ -6,7 +6,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team3786.robot.commands.auto.AutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
+import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
+import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
+import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
+import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 
@@ -34,17 +39,34 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	
     	System.out.println("Initializing Commands");
-    	ShooterAimCommand aimUpCommand = new ShooterAimCommand(true);
-    	ShooterAimCommand aimDownCommand = new ShooterAimCommand(false);
+    	
+    	//Instantiating Commands that deal with the Shooter
+    	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(true);
+    	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(false);
+    	final IntakeBall intakeBall = new IntakeBall();
+    	final ShootBall shootBall = new ShootBall();
+    	final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
+    	final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
+    	
+    	//Instantiating Commands that deal with the Drive Train
+    	final Drive drive = new Drive();
+    	
+    	//Instantiating Commands that deal with Autonomous 	
+    	final AutonomousCommandGroup defaultAutonomous = new AutonomousCommandGroup();
+    	
         System.out.println("Commands Successfully Initialized");
         
         System.out.println("Binding Command to Buttons");
+        //Binding Commands that deal with the Shooter
         UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
         UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
+        UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
+        UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         System.out.println("Command Successfully Bound to Buttons");
         
         chooser = new SendableChooser();
-        chooser.addDefault("Default Auto", new Drive());
+        chooser.addDefault("Drive", drive);
+        chooser.addDefault("Default Auto", defaultAutonomous);
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
     }
