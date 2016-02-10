@@ -29,18 +29,27 @@ public class ReleaseMechanism extends Subsystem{
 		return instance;
 	}
 	
+	/**
+	 * Retract the release mechanism
+	 */
 	public void retract() {
 		releaseServo[0].set(90);
 		releaseServo[1].set(90);
 		isExtended = true;
 	}
 	
+	/**
+	 * Extend the release mechanism
+	 */
 	public void extend() {
 		releaseServo[0].set(0);
 		releaseServo[1].set(180);
 		isExtended = false;
 	}
 	
+	/**
+	 * @return True if extended, false if retracted
+	 */
 	public boolean isExtended() {
 		return isExtended;
 	}

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3786.robot.config.robot;
 
-public class PracticeRobotConfig extends RobotConfig{
+public class CompetitionRobotConfig extends RobotConfig{
+	
 	//***************START***************
 	
 	//Drive Motors
@@ -139,5 +140,5 @@ public class PracticeRobotConfig extends RobotConfig{
 	public int getLifttwoChan() {
 		return LIFT_TWO;
 	}
-		
+
 }

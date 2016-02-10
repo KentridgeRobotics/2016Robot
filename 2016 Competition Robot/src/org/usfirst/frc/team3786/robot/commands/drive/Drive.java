@@ -3,6 +3,7 @@ package org.usfirst.frc.team3786.robot.commands.drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 
 public class Drive extends Command {
@@ -14,10 +15,12 @@ public class Drive extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	DriveTrain.getInstance();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	DriveTrain.getInstance().drive(UIConfig.getInstance().getLeftDrive(), UIConfig.getInstance().getRightDrive());
     }
 
     // Make this return true when this Command no longer needs to run execute()

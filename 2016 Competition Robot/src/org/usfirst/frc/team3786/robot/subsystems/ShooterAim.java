@@ -34,26 +34,44 @@ public class ShooterAim extends Subsystem{
 		return instance;
 	}
 	
+	/**
+	 * @param position The position we want the shooter to be
+	 */
 	public void setPosition(double position) {
 		aimMotor.set(position);
 	}
 	
+	/**
+	 * Move the shooter to the user defined UP position
+	 */
 	public void upPosition() {
 		aimMotor.set(UP_POS);
 	}
 	
+	/**
+	 * Move the shooter to the user defined Shoot position
+	 */
 	public void shootPosition() {
 		aimMotor.set(SHOOT_POS);
 	}
 	
+	/**
+	 * Move the shooter to the user defined intake position
+	 */
 	public void intakePosition() {
 		aimMotor.set(DOWN_POS);
 	}
 	
+	/**
+	 * Tells Shooter to retain current position/angle
+	 */
 	public void retainCurrentPosition() {
 		aimMotor.set(aimMotor.getPosition());
 	}
 	
+	/**
+	 * @return The current Position of the shooter
+	 */
 	public double getPosition() {
 		return aimMotor.getPosition();
 	}

@@ -28,22 +28,37 @@ public class Shooter extends Subsystem{
 		return instance;
 	}
 	
+	/**
+	 * Spin Shooter Wheels to full speed
+	 */
 	public void fullSpeedAhead() {
 		shooterWheels.set(1);
 	}
 	
+	/**
+	 * @return DigitalInput object that holds data on the limit switch
+	 */
 	public DigitalInput checkForBall() {
 		return haveBall;
 	}
 	
+	/**
+	 * Spin the wheels to intake speed
+	 */
 	public void spinToIntakeSpeed() {
 		shooterWheels.set(INTAKE_SPEED);
 	}
 	
+	/**
+	 * Spin the wheels to shoot speed
+	 */
 	public void spinToShootSpeed() {
 		shooterWheels.set(SHOOT_SPEED);
 	}
 	
+	/**
+	 * Stop the shooter wheels;
+	 */
 	public void STOP() {
 		shooterWheels.set(0);
 	}
