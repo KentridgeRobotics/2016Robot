@@ -14,6 +14,10 @@ import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
+import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
+import org.usfirst.frc.team3786.robot.subsystems.Shooter;
+import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -38,6 +42,13 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
     	
+    	System.out.println("Initializing Subsystems");
+    	
+    	DriveTrain.getInstance();
+    	ReleaseMechanism.getInstance();
+    	Shooter.getInstance();
+    	ShooterAim.getInstance();
+    	
     	System.out.println("Initializing Commands");
     	
     	//Instantiating Commands that deal with the Shooter
@@ -56,6 +67,7 @@ public class Robot extends IterativeRobot {
     	
         System.out.println("Commands Successfully Initialized");
         
+        
         System.out.println("Binding Command to Buttons");
         
         //Binding Commands that deal with the Shooter
@@ -65,13 +77,24 @@ public class Robot extends IterativeRobot {
         UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
         UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         
+        UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
+        UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
+        
         System.out.println("Command Successfully Bound to Buttons");
+        
+        //TODO Test the SmartDashabord Integration with subsystems and commands
+        SmartDashboard.putData("Shoot Ball Command", shootBall);
+        SmartDashboard.putData("Intake Ball Command", intakeBall);
+        
+        SmartDashboard.putData("Drive Train", DriveTrain.getInstance());
         
         chooser = new SendableChooser();
         chooser.addDefault("Drive", drive);
         chooser.addDefault("Default Auto", defaultAutonomous);
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        
+        SmartDashboard.putData(Scheduler.getInstance());
     }
 	
 	/**

@@ -3,9 +3,9 @@ package org.usfirst.frc.team3786.robot.config.robot;
 public class PracticeRobotConfig extends RobotConfig{
 	//***************START***************
 	
-	//Drive Motors
+	//Drive Motors - PWM Channels
 	private static final int LEFT_DRIVE_MOTOR = 0;
-	private static final int RIGHT_DRIVE_MOTOR = 0;
+	private static final int RIGHT_DRIVE_MOTOR = 1;
 	
 	//Drive PID
 	private static final int DRIVE_P = 0;
@@ -13,16 +13,17 @@ public class PracticeRobotConfig extends RobotConfig{
 	private static final int DRIVE_D = 0;
 	private static final int ENCODER_CODES_PER_REVOLUTION = 360;
 	
+	//DIO Channels
 	private static final int[] LEFT_ENCODER_CHANS = {0,1}; //{A CHANNEL, B CHANNEL}
 	private static final int[] RIGHT_ENCODER_CHANS = {2,3};//{A CHANNEL, B CHANNEL}
 	
 	//Shooter Mechanisms
-	private static final int SHOOTER_FLY_WHEEL = 0;
+	private static final int SHOOTER_FLY_WHEEL = 2;
 	
-	private static final int RELEASE_MECH_LEFT = 0;
-	private static final int RELEASE_MECH_RIGHT = 0;
+	private static final int RELEASE_MECH_LEFT = 3;
+	private static final int RELEASE_MECH_RIGHT = 4;
 	
-	private static final int BALL_ENGAGEMENT = 0;
+	private static final int BALL_ENGAGEMENT = 4;
 	
 	private static final int ELEVATION_MOTOR = 0;
 	
