@@ -37,5 +37,4 @@ public class GoToShootPositionCommand extends Command{
 	protected void interrupted() {
 		ShooterAim.getInstance().retainCurrentPosition();
 	}
-
 }

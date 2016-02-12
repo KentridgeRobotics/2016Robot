@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * This Class holds methods to control the drive train
+ * @author Manpreet Singh 2016
+ */
 public class DriveTrain extends Subsystem {
     
 	private static final double ACCEL_FACTOR = 1.0;

@@ -5,6 +5,10 @@ import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * This Class holds methods to aim the shooter
+ * @author Manpreet Singh 2016
+ */
 public class ShooterAim extends Subsystem{
 
 	private static ShooterAim instance;

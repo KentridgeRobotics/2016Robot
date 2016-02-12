@@ -94,5 +94,4 @@ public class SingleJoystick extends UIConfig{
 	public Button pullHookButton() {
 		return (new JoystickButton(stick, PULL_HOOK));
 	}
-
 }

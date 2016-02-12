@@ -140,5 +140,4 @@ public class CompetitionRobotConfig extends RobotConfig{
 	public int getLifttwoChan() {
 		return LIFT_TWO;
 	}
-
 }

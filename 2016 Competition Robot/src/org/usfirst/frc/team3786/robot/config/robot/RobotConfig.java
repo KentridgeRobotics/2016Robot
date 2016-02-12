@@ -55,5 +55,4 @@ public abstract class RobotConfig {
 	public abstract int getLiftOneChan();
 	public abstract int getLifttwoChan();
 	
-	
 }

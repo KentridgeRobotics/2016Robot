@@ -6,6 +6,10 @@ import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * This Class holds methods to extend and retract the release mechanism
+ * @author Manpreet Singh 2016
+ */
 public class ReleaseMechanism extends Subsystem{
 	
 	private static boolean isExtended;
@@ -35,7 +39,7 @@ public class ReleaseMechanism extends Subsystem{
 	public void retract() {
 		releaseServo[0].set(90);
 		releaseServo[1].set(90);
-		isExtended = true;
+		isExtended = false;
 	}
 	
 	/**
@@ -44,7 +48,7 @@ public class ReleaseMechanism extends Subsystem{
 	public void extend() {
 		releaseServo[0].set(0);
 		releaseServo[1].set(180);
-		isExtended = false;
+		isExtended = true;
 	}
 	
 	/**

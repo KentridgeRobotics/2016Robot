@@ -2,6 +2,11 @@ package org.usfirst.frc.team3786.robot.config.ui;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 
+/**
+ * UIConfig is where we declare abstract methods for different button
+ * We then call these methods from main file and bind commands to them
+ * @author Manpreet Singh 2016
+ */
 public abstract class UIConfig {
 	private static UIConfig instance;
 		

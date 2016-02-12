@@ -139,6 +139,5 @@ public class PracticeRobotConfig extends RobotConfig{
 	@Override
 	public int getLifttwoChan() {
 		return LIFT_TWO;
-	}
-		
+	}	
 }

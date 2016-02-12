@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3786.robot.commands.shooting;
 
-import org.usfirst.frc.team3786.robot.subsystems.Shooter;
+import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,9 +10,7 @@ public class ShooterAimCommand extends Command{
 	
 	private static final int UP_MODE = 0;
 	private static final int DOWN_MODE = 1;
-	
-	private static final double INCREMENT = 1;
-	
+		
 	private static int CURRENT_MODE;
 	
 	public ShooterAimCommand(boolean goUp) {
@@ -32,13 +30,13 @@ public class ShooterAimCommand extends Command{
 	protected void execute() {
 		switch(CURRENT_MODE) {
 			case UP_MODE:
-				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + INCREMENT);
+				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + UIConfig.getInstance().getAIM_INCREMENT());
 				break;
 			case DOWN_MODE:
-				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - INCREMENT);
+				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - UIConfig.getInstance().getAIM_INCREMENT());
 				break;
 			default:
-				
+				ShooterAim.getInstance().retainCurrentPosition();
 		}
 	}
 
@@ -57,5 +55,4 @@ public class ShooterAimCommand extends Command{
 	protected void interrupted() {
 		ShooterAim.getInstance().retainCurrentPosition();
 	}
-
 }

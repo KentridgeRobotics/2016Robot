@@ -90,6 +90,5 @@ public class TankDrive extends UIConfig{
 	public Button pullHookButton() {
 		return (new JoystickButton(leftStick, PULL_HOOK));
 	}
-	
 }
 
