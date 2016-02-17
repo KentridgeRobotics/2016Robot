@@ -21,6 +21,11 @@ public class ShooterAimCommand extends Command{
 			CURRENT_MODE = DOWN_MODE;
 	}
 	
+	public ShooterAimCommand() {
+		requires(ShooterAim.getInstance());
+		CURRENT_MODE = -1;
+	}
+	
 	@Override
 	protected void initialize() {
 		
@@ -53,6 +58,6 @@ public class ShooterAimCommand extends Command{
 
 	@Override
 	protected void interrupted() {
-		ShooterAim.getInstance().retainCurrentPosition();
+		end();
 	}
 }

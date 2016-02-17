@@ -30,7 +30,7 @@ public class ShootBall extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		if(!Shooter.getInstance().wheelsSpinning() && !ReleaseMechanism.getInstance().isExtended())
+		if(!Shooter.getInstance().wheelsSpinning() && !ReleaseMechanism.getInstance().isExtended() && !Shooter.getInstance().checkForBall().get())
 			return true;
 		else return false;
 	}

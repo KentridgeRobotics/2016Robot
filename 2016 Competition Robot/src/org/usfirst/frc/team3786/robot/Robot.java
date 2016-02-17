@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3786.robot.commands.auto.AutonomousCommandGroup;
+import org.usfirst.frc.team3786.robot.commands.auto.DefaultAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
 import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
 import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
@@ -61,7 +61,7 @@ public class Robot extends IterativeRobot {
     	final Drive drive = new Drive();
     	
     	//Instantiating Commands that deal with Autonomous 	
-    	final AutonomousCommandGroup defaultAutonomous = new AutonomousCommandGroup();
+    	final DefaultAutonomousCommandGroup defaultAutonomous = new DefaultAutonomousCommandGroup();
     	
         System.out.println("Commands Successfully Initialized");
         
@@ -84,13 +84,15 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Shoot Ball Command", shootBall);
         SmartDashboard.putData("Intake Ball Command", intakeBall);
         
-        SmartDashboard.putData("Drive Train", DriveTrain.getInstance());
+        SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
         chooser = new SendableChooser();
         chooser.addDefault("Drive", drive);
         chooser.addDefault("Default Auto", defaultAutonomous);
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
+        
+        Scheduler.getInstance().add(drive);
         
         SmartDashboard.putData(Scheduler.getInstance());
     }
@@ -153,9 +155,9 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-    }
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+	}
     
     /**
      * This function is called periodically during test mode

@@ -8,18 +8,18 @@ public class TankDrive extends UIConfig{
     
 	//*************Button Config*************
 	
-	private static final int SHOOT_BUTTON = 0;
-	private static final int INTAKE_BUTTON = 0;
+	private static final int SHOOT_BUTTON = 1;
+	private static final int INTAKE_BUTTON = 1;
 	
-	private static final int AIM_UP_BUTTON = 0;
-	private static final int AIM_DOWN_BUTTON = 0;
+	private static final int AIM_UP_BUTTON = 3;
+	private static final int AIM_DOWN_BUTTON = 5;
 	
-	private static final int TRAVEL_AIM_BUTTON = 0;
+	private static final int TRAVEL_AIM_BUTTON = 6;
 	
-	private static final int SHOOT_POSITION_BUTTON= 0;
-	private static final int SHOOTER_WHEEL_SPEED_AXIS= 0;
-	private static final int EXTEND_HOOK= 0;
-	private static final int PULL_HOOK= 0;
+	private static final int SHOOT_POSITION_BUTTON = 4;
+	private static final int SHOOTER_WHEEL_SPEED_AXIS = 2;
+	private static final int EXTEND_HOOK = 7;
+	private static final int PULL_HOOK = 8;
 	
 	private static final double AIM_INCREMENT = 1.0;
 	

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3786.robot.subsystems;
 
+import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
@@ -20,7 +21,7 @@ public class ShooterAim extends Subsystem{
 	public static final double UP_POS = 0;
 	public static final double SHOOT_POS = 0;
 		
-	public ShooterAim() {
+	private ShooterAim() {
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
 		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
@@ -83,6 +84,6 @@ public class ShooterAim extends Subsystem{
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		
+		setDefaultCommand(new ShooterAimCommand());
 	}
 }

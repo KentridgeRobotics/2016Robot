@@ -25,7 +25,7 @@ public class PracticeRobotConfig extends RobotConfig{
 	
 	private static final int BALL_ENGAGEMENT = 4;
 	
-	private static final int ELEVATION_MOTOR = 0;
+	private static final int ELEVATION_MOTOR = 17;
 	
 	private static final int ELEVATION_LIMIT_TOP = 0;
 	private static final int ELEVATION_LIMIT_BOTTOM = 0;
