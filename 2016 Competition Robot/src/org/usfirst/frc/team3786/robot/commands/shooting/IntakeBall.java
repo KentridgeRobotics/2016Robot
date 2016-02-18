@@ -14,18 +14,17 @@ public class IntakeBall extends Command{
 	
 	@Override
 	protected void initialize() {
-		if(ReleaseMechanism.getInstance().isExtended())
-			ReleaseMechanism.getInstance().retract();
+		Shooter.getInstance().spinToIntakeSpeed();
+		System.out.println("Trying to Intake Ball");
 	}
 
 	@Override
 	protected void execute() {
-		Shooter.getInstance().spinToIntakeSpeed();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return Shooter.getInstance().checkForBall().get();
+		return !Shooter.getInstance().checkForBall().get();
 	}
 
 	@Override

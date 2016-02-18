@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3786.robot.subsystems;
 
-import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
+import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.Servo;
@@ -22,9 +22,7 @@ public class ReleaseMechanism extends Subsystem{
 		releaseServo[0] = new Servo(RobotConfig.getInstance().releaseServoLeft());
 		releaseServo[1] = new Servo(RobotConfig.getInstance().releaseServoRight());
 		
-		releaseServo[0].set(90);
-		releaseServo[1].set(90);
-		isExtended = false;
+		retract();
 	}
 	
 	public static ReleaseMechanism getInstance() {
@@ -37,8 +35,8 @@ public class ReleaseMechanism extends Subsystem{
 	 * Retract the release mechanism
 	 */
 	public void retract() {
-		releaseServo[0].set(90);
-		releaseServo[1].set(90);
+		releaseServo[0].set(0);
+		releaseServo[1].set(180);
 		isExtended = false;
 	}
 	
@@ -46,8 +44,8 @@ public class ReleaseMechanism extends Subsystem{
 	 * Extend the release mechanism
 	 */
 	public void extend() {
-		releaseServo[0].set(0);
-		releaseServo[1].set(180);
+		releaseServo[0].set(20);
+		releaseServo[1].set(0);
 		isExtended = true;
 	}
 	
@@ -60,6 +58,5 @@ public class ReleaseMechanism extends Subsystem{
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ShootBall());
 	}
 }

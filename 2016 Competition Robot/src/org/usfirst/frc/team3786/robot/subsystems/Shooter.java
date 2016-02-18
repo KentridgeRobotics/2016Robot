@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3786.robot.subsystems;
 
-import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
+import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -15,7 +15,7 @@ public class Shooter extends Subsystem{
 	
 	private static Shooter instance;
 	
-	private static final double SHOOT_SPEED = 0.5;
+	private static final double SHOOT_SPEED = -0.5;
 	private static final double INTAKE_SPEED = 0.3;
 	private static DigitalInput haveBall;
 	private static boolean wheelsSpinning;
@@ -77,6 +77,6 @@ public class Shooter extends Subsystem{
 		
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new IntakeBall());
+		setDefaultCommand(new StopShooter());
 	}
 }
