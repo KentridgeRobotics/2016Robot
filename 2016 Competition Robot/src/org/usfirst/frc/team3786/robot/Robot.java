@@ -15,6 +15,7 @@ import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand
 import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
+import org.usfirst.frc.team3786.robot.commands.shooting.SpinToShootSpeed;
 import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
@@ -46,6 +47,7 @@ public class Robot extends IterativeRobot {
 	final static GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
 	
 	final static StopShooter stopShooter = new StopShooter();
+	final static SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
 	
 	//Instantiating Commands that deal with the Drive Train
 	final Drive drive = new Drive();
@@ -74,16 +76,17 @@ public class Robot extends IterativeRobot {
         System.out.println("Binding Command to Buttons");
         
         //Binding Commands that deal with the Shooter
-        //UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
-        //UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
+        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
+        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         
         //UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
         //UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         
-        //UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
+       // UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
         //UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
         
-        new JoystickButton(new Joystick(0), 1).whenPressed(stopShooter);
+        //new JoystickButton(new Joystick(0), 3).whenPressed(stopShooter);
+        //new JoystickButton(new Joystick(0), 4).whenPressed(spinToShootSpeed);
         
         System.out.println("Command Successfully Bound to Buttons");
         
@@ -101,6 +104,8 @@ public class Robot extends IterativeRobot {
         
         Scheduler.getInstance().add(drive);
         Scheduler.getInstance().add(stopShooter);
+        
+        Scheduler.getInstance().add(new Drive());
         
         SmartDashboard.putData(Scheduler.getInstance());
     }
@@ -165,6 +170,12 @@ public class Robot extends IterativeRobot {
      */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		
+		//System.out.println("Left Drive" + UIConfig.getInstance().getLeftDrive());
+		//System.out.println("Right Drive" + UIConfig.getInstance().getRightDrive());
+		
+		System.out.println("Shooter Position: " + ShooterAim.getInstance().getPosition());
+		
 	}
     
     /**

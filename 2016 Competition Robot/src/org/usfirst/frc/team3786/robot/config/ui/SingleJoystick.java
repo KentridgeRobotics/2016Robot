@@ -21,7 +21,7 @@ public class SingleJoystick extends UIConfig{
 	private static final int EXTEND_HOOK= 7;
 	private static final int PULL_HOOK= 8;
 	
-	private static final double AIM_INCREMENT = 1.0;
+	private static final double AIM_INCREMENT = -.015;
 	//******************END******************
 	
 	private static final double reductionFactor = 1.0;
@@ -31,17 +31,23 @@ public class SingleJoystick extends UIConfig{
 	
 	public SingleJoystick() {
 		stick = new Joystick(0);
+		
+	}
+	
+	public void update() {
 		speed = stick.getX() * reductionFactor;
-		turn = stick.getY() * reductionFactor;
+		turn = -stick.getY() * reductionFactor;
 	}
 	
 	@Override
 	public double getLeftDrive() {
+		update();
 		return speed + turn;
 	}
 
 	@Override
 	public double getRightDrive() {
+		update();
 		return speed - turn;
 	}
 

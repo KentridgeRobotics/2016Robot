@@ -30,7 +30,7 @@ public class ShooterAim extends Subsystem{
 				RobotConfig.getInstance().getSHOOTER_I(), 
 				RobotConfig.getInstance().getSHOOTER_D());
 		
-		aimMotor.enable();
+		aimMotor.enableControl();
 	}
 	
 	public static ShooterAim getInstance() {

@@ -21,6 +21,7 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	DriveTrain.getInstance().drive(UIConfig.getInstance().getLeftDrive(), UIConfig.getInstance().getRightDrive());
+    	//DriveTrain.getInstance().drive(-1, 1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

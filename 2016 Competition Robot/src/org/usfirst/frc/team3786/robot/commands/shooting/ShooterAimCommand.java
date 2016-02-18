@@ -15,15 +15,20 @@ public class ShooterAimCommand extends Command{
 	
 	public ShooterAimCommand(boolean goUp) {
 		requires(ShooterAim.getInstance());
-		if(goUp)
+		if(goUp){
 			CURRENT_MODE = UP_MODE;
-		else
+			System.out.println("UP Mode Bound");
+		}
+		else {
 			CURRENT_MODE = DOWN_MODE;
+			System.out.println("DOWN Mode Bound");
+		}
 	}
 	
 	public ShooterAimCommand() {
 		requires(ShooterAim.getInstance());
 		CURRENT_MODE = -1;
+		System.out.println("NO Mode Specified");
 	}
 	
 	@Override
@@ -36,9 +41,11 @@ public class ShooterAimCommand extends Command{
 		switch(CURRENT_MODE) {
 			case UP_MODE:
 				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + UIConfig.getInstance().getAIM_INCREMENT());
+				System.out.println("Moving UP");
 				break;
 			case DOWN_MODE:
 				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - UIConfig.getInstance().getAIM_INCREMENT());
+				System.out.println("Moving DOWN");
 				break;
 			default:
 				ShooterAim.getInstance().retainCurrentPosition();
