@@ -17,11 +17,11 @@ public class ShooterAimCommand extends Command{
 		requires(ShooterAim.getInstance());
 		if(goUp){
 			CURRENT_MODE = UP_MODE;
-			System.out.println("UP Mode Bound");
+			System.out.println("::UP Mode Engaged::");
 		}
 		else {
 			CURRENT_MODE = DOWN_MODE;
-			System.out.println("DOWN Mode Bound");
+			System.out.println("::DOWN Mode Engaged::");
 		}
 	}
 	
@@ -33,7 +33,7 @@ public class ShooterAimCommand extends Command{
 	
 	@Override
 	protected void initialize() {
-		System.out.println("Shooter Aim Command Initialized: " + CURRENT_MODE); 
+		System.out.println("Targeting System Engaged: " + CURRENT_MODE); 
 	}
 
 	@Override
@@ -49,6 +49,7 @@ public class ShooterAimCommand extends Command{
 				break;
 			default:
 				ShooterAim.getInstance().retainCurrentPosition();
+				break;
 		}
 	}
 

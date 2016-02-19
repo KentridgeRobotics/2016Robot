@@ -9,30 +9,50 @@ public class TankDrive extends UIConfig{
 	//*************Button Config*************
 	
 	private static final int SHOOT_BUTTON = 1;
-	private static final int INTAKE_BUTTON = 1;
+	private static final int INTAKE_BUTTON = 2;
 	
-	private static final int AIM_UP_BUTTON = 3;
-	private static final int AIM_DOWN_BUTTON = 5;
+	private static final int AIM_UP_BUTTON = 2;
+	private static final int AIM_DOWN_BUTTON = 3;
 	
-	private static final int TRAVEL_AIM_BUTTON = 6;
+	private static final int INTAKE_POSITION_BUTTON = 4;
+	private static final int SHOOT_POSITION_BUTTON= 6;
 	
-	private static final int SHOOT_POSITION_BUTTON = 4;
-	private static final int SHOOTER_WHEEL_SPEED_AXIS = 2;
-	private static final int EXTEND_HOOK = 7;
-	private static final int PULL_HOOK = 8;
+	private static final int STOP_SHOOTER_BUTTON = 4;
 	
-	private static final double AIM_INCREMENT = 1.0;
+	private static final int EXTEND_HOOK= 7;
+	private static final int PULL_HOOK= 8;
+	
+	private static final double AIM_INCREMENT = -.015;
 	
 	//******************END******************
+	
 	private Joystick leftStick, rightStick;
+	
+	private JoystickButton shootBallButton;
+	private JoystickButton intakeBallButton;
+	
+	private JoystickButton aimUpButton;
+	private JoystickButton aimDownButton;
+	
+	private JoystickButton intakePositionButton;
+	private JoystickButton shootPositionButton;
+	
+	private JoystickButton stopShooterButton;
 	
 	public TankDrive() {
 		leftStick = new Joystick(0);
 		rightStick = new Joystick(1);
-	}
-	@Override
-	public Joystick stick() {
-		return rightStick;
+		
+		shootBallButton = new JoystickButton(rightStick, SHOOT_BUTTON);
+		intakeBallButton = new JoystickButton(rightStick, INTAKE_BUTTON);
+		
+		aimUpButton = new JoystickButton(leftStick, AIM_UP_BUTTON);
+		aimDownButton = new JoystickButton(leftStick, AIM_DOWN_BUTTON);
+		
+		intakePositionButton = new JoystickButton(leftStick, INTAKE_POSITION_BUTTON);
+		shootPositionButton = new JoystickButton(leftStick, SHOOT_POSITION_BUTTON);
+		
+		stopShooterButton = new JoystickButton(rightStick, STOP_SHOOTER_BUTTON);
 	}
 	
 	@Override
@@ -47,39 +67,39 @@ public class TankDrive extends UIConfig{
 
 	@Override
 	public Button shootBallButton() {
-		return (new JoystickButton(rightStick, SHOOT_BUTTON));
+		return shootBallButton;
 	}
 
 	@Override
 	public Button intakeBallButton() {
-		return (new JoystickButton(leftStick, INTAKE_BUTTON));
+		return intakeBallButton;
 	}
 	
 	@Override
 	public Button aimUpButton() {
-		return (new JoystickButton(rightStick, AIM_UP_BUTTON));
+		return aimUpButton;
 	}
 
 	@Override
 	public Button aimDownButton() {
-		return (new JoystickButton(rightStick, AIM_DOWN_BUTTON));
+		return aimDownButton;
 	}
 
 	@Override
 	public Button intakePositionButton() {
-		return (new JoystickButton(rightStick, TRAVEL_AIM_BUTTON));
+		return intakePositionButton;
 	}
 
 	@Override
 	public Button shootPositionButton() {
-		return (new JoystickButton(leftStick, SHOOT_POSITION_BUTTON));
+		return  shootPositionButton;
 	}
-
+	
 	@Override
-	public double getShooterWheelSpeed() {
-		return leftStick.getRawAxis(SHOOTER_WHEEL_SPEED_AXIS);
+	public Button stopShooterButton() {
+		return stopShooterButton;
 	}
-
+	
 	@Override
 	public double getAIM_INCREMENT() {
 		return AIM_INCREMENT;

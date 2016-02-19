@@ -25,14 +25,15 @@ public class ShooterAim extends Subsystem{
 	private ShooterAim() {
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
-//		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
-//				RobotConfig.getInstance().getCODES_PER_REV(), 
-//				RobotConfig.getInstance().getSHOOTER_P(), 
-//				RobotConfig.getInstance().getSHOOTER_I(), 
-//				RobotConfig.getInstance().getSHOOTER_D());
-		aimMotor.setVoltageMode();
-		//aimMotor.configLimitMode(CANJaguar.LimitMode.SwitchInputsOnly);
-		aimMotor.enable();
+		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
+				RobotConfig.getInstance().getCODES_PER_REV(), 
+				RobotConfig.getInstance().getSHOOTER_P(), 
+				RobotConfig.getInstance().getSHOOTER_I(), 
+				RobotConfig.getInstance().getSHOOTER_D());
+		
+		aimMotor.configLimitMode(CANJaguar.LimitMode.SwitchInputsOnly);
+		
+		aimMotor.enableControl();
 	}
 	
 	public void calibrate(){

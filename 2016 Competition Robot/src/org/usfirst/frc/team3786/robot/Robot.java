@@ -193,8 +193,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().motor().getOutputVoltage());
 		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().motor().getForwardLimitOK());
 		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().motor().getReverseLimitOK());
-		if(UIConfig.getInstance().stick().getRawButton(7))
-			ShooterAim.getInstance().motor().reset();
 	}
     
     /**

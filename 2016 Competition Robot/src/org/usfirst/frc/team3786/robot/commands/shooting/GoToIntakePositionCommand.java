@@ -13,11 +13,11 @@ public class GoToIntakePositionCommand extends Command{
 	@Override
 	protected void initialize() {
 		ShooterAim.getInstance();
+		ShooterAim.getInstance().intakePosition();
 	}
 
 	@Override
 	protected void execute() {
-		ShooterAim.getInstance().intakePosition();
 	}
 
 	@Override
