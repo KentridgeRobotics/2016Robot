@@ -33,7 +33,7 @@ public class ShooterAimCommand extends Command{
 	
 	@Override
 	protected void initialize() {
-		
+		System.out.println("Shooter Aim Command Initialized: " + CURRENT_MODE); 
 	}
 
 	@Override

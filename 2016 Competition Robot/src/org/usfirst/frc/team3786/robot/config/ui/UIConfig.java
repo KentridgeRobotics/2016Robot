@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3786.robot.config.ui;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 
 /**
@@ -17,6 +18,8 @@ public abstract class UIConfig {
 	}
 	
 	//*************Config START*************
+	
+	public abstract Joystick stick();
 	
 	public abstract double getLeftDrive();
 	public abstract double getRightDrive();

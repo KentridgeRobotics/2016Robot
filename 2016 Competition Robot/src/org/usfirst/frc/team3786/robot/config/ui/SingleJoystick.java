@@ -38,6 +38,10 @@ public class SingleJoystick extends UIConfig{
 		speed = stick.getX() * reductionFactor;
 		turn = -stick.getY() * reductionFactor;
 	}
+	@Override
+	public Joystick stick() {
+		return stick;
+	}
 	
 	@Override
 	public double getLeftDrive() {

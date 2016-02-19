@@ -30,7 +30,11 @@ public class TankDrive extends UIConfig{
 		leftStick = new Joystick(0);
 		rightStick = new Joystick(1);
 	}
-
+	@Override
+	public Joystick stick() {
+		return rightStick;
+	}
+	
 	@Override
 	public double getLeftDrive() {
 		return leftStick.getY();

@@ -5,6 +5,7 @@ import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This Class holds methods to aim the shooter
@@ -24,25 +25,44 @@ public class ShooterAim extends Subsystem{
 	private ShooterAim() {
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
-		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.getInstance().getCODES_PER_REV(), 
-				RobotConfig.getInstance().getSHOOTER_P(), 
-				RobotConfig.getInstance().getSHOOTER_I(), 
-				RobotConfig.getInstance().getSHOOTER_D());
-		
-		aimMotor.enableControl();
+//		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
+//				RobotConfig.getInstance().getCODES_PER_REV(), 
+//				RobotConfig.getInstance().getSHOOTER_P(), 
+//				RobotConfig.getInstance().getSHOOTER_I(), 
+//				RobotConfig.getInstance().getSHOOTER_D());
+		aimMotor.setVoltageMode();
+		//aimMotor.configLimitMode(CANJaguar.LimitMode.SwitchInputsOnly);
+		aimMotor.enable();
 	}
 	
+	public void calibrate(){
+		//aimMotor.enableControl(180);
+		//aimMotor.reset();
+		//setPosition(0);
+		//while(aimMotor.getReverseLimitOK()) {}; //wait for limit switch
+		//System.out.println("Limit HIT");
+		//aimMotor.disableControl();
+		aimMotor.enableControl(0);
+		aimMotor.set(-0.2);
+		System.out.println("DONE CALIBRATING");
+		System.out.println("TRYING TO MOVE");
+	}
+		
 	public static ShooterAim getInstance() {
 		if(instance == null)
 			instance = new ShooterAim();
 		return instance;
 	}
 	
+	public CANJaguar motor() {
+		return aimMotor;
+	}
+	
 	/**
 	 * @param position The position we want the shooter to be
 	 */
 	public void setPosition(double position) {
+		position /= 360.0;
 		aimMotor.set(position);
 	}
 	
