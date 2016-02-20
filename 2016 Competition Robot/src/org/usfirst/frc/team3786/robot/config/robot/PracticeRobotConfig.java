@@ -8,9 +8,9 @@ public class PracticeRobotConfig extends RobotConfig{
 	private static final int RIGHT_DRIVE_MOTOR = 1;
 	
 	//Drive PID
-	private static final int DRIVE_P = 0;
-	private static final int DRIVE_I = 0;
-	private static final int DRIVE_D = 0;
+	private static final double DRIVE_P = 0;
+	private static final double DRIVE_I = 0;
+	private static final double DRIVE_D = 0;
 	private static final int ENCODER_CODES_PER_REVOLUTION = 360;
 	
 	//DIO Channels
@@ -31,9 +31,9 @@ public class PracticeRobotConfig extends RobotConfig{
 	private static final int ELEVATION_LIMIT_BOTTOM = 0;
 	
 	//Shooter PID
-	private static final int SHOOTER_P = 1;
-	private static final int SHOOTER_I = 0;
-	private static final int SHOOTER_D = 1;
+	private static final double SHOOTER_P = 1;
+	private static final double SHOOTER_I = 0;
+	private static final double SHOOTER_D = 1;
 	
 	//Lifter Mechanisms
 	private static final int LIFT_ONE = 0;
@@ -42,32 +42,32 @@ public class PracticeRobotConfig extends RobotConfig{
 	//****************END****************
 	
 	@Override
-	public int getDRIVE_P() {
+	public double getDRIVE_P() {
 		return DRIVE_P;
 	}
 	
 	@Override
-	public int getDRIVE_I() {
+	public double getDRIVE_I() {
 		return DRIVE_I;
 	}
 	
 	@Override
-	public int getDRIVE_D() {
+	public double getDRIVE_D() {
 		return DRIVE_D;
 	}
 	
 	@Override
-	public int getSHOOTER_P() {
+	public double getSHOOTER_P() {
 		return SHOOTER_P;
 	}
 	
 	@Override
-	public int getSHOOTER_I() {
+	public double getSHOOTER_I() {
 		return SHOOTER_I;
 	}
 	
 	@Override
-	public int getSHOOTER_D() {
+	public double getSHOOTER_D() {
 		return SHOOTER_D;
 	}
 	

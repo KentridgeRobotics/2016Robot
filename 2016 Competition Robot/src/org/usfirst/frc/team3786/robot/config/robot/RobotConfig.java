@@ -16,17 +16,17 @@ public abstract class RobotConfig {
 	}
 	
 	//***************Drive PID Values***************
-	public abstract int getDRIVE_P();
-	public abstract int getDRIVE_I();
-	public abstract int getDRIVE_D();
+	public abstract double getDRIVE_P();
+	public abstract double getDRIVE_I();
+	public abstract double getDRIVE_D();
 	public abstract int getCODES_PER_REV();
 	public abstract int[] leftEncoderChan();
 	public abstract int[] rightEncoderChan();
 	
 	//************Shooter AIM PID Values************
-	public abstract int getSHOOTER_P();
-	public abstract int getSHOOTER_I();
-	public abstract int getSHOOTER_D();
+	public abstract double getSHOOTER_P();
+	public abstract double getSHOOTER_I();
+	public abstract double getSHOOTER_D();
 	
 	
 	//************Motor Channels and IDS************

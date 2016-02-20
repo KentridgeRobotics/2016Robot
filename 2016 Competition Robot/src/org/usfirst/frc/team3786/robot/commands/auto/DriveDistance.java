@@ -6,7 +6,7 @@ public class DriveDistance extends Command{
 	
 	private double distance;
 	
-	public enum Direction { Forwards, Backwards; }
+	public enum Direction { Forwards, Backwards }
 	
 	public DriveDistance(Direction direction, double distance) {
 		if(direction == Direction.Backwards)

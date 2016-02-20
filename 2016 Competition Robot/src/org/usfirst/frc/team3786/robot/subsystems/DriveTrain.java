@@ -13,19 +13,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Manpreet Singh 2016
  */
 public class DriveTrain extends Subsystem {
-    
-	private static final double ACCEL_FACTOR = 1.0;
-	
+    	
 	private static DriveTrain instance;
-	private static long lastLoop = System.currentTimeMillis();
-	private static double currentValue;
 	
 	private Jaguar leftMotor, rightMotor;
 	
 	private Encoder leftEncoder, rightEncoder;
 	
 	public DriveTrain() {
-		currentValue = 0.0;
 		leftEncoder = new Encoder(RobotConfig.getInstance().leftEncoderChan()[0], 
 				RobotConfig.getInstance().leftEncoderChan()[1]);
 		
@@ -47,22 +42,6 @@ public class DriveTrain extends Subsystem {
 	public void drive(double left_speed, double right_speed) {		
 		leftMotor.set(left_speed);
 		rightMotor.set(right_speed);
-	}
-	
-	public void rampDrive(double left_speed, double right_speed) {
-		leftMotor.set(ramp(left_speed));
-		rightMotor.set(ramp(right_speed));
-	}
-	
-	//TODO Test This
-	public double ramp(double desiredValue) {
-		long currentLoop = System.currentTimeMillis();
-		double delta = (double)(lastLoop - currentLoop)/1000.0;
-		double error = desiredValue - currentValue;
-		currentValue += error*delta*ACCEL_FACTOR;
-		if((currentValue > desiredValue && error > 0) || (currentValue < desiredValue && error < 0))
-			currentValue = desiredValue;
-		return currentValue;
 	}
 	
 	/**
@@ -88,7 +67,7 @@ public class DriveTrain extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	//setDefaultCommand(new Drive());
+    	setDefaultCommand(new Drive());
     }
 }
 

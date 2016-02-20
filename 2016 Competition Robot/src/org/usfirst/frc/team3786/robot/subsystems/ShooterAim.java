@@ -105,6 +105,6 @@ public class ShooterAim extends Subsystem{
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		setDefaultCommand(new ShooterAimCommand());
+		setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
 	}
 }

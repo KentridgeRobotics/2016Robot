@@ -39,88 +39,58 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     
   //Instantiating Commands that deal with the Shooter
-	final static ShooterAimCommand aimUpCommand = new ShooterAimCommand(true);
-	final static ShooterAimCommand aimDownCommand = new ShooterAimCommand(false);
-	final static IntakeBall intakeBall = new IntakeBall();
-	final static ShootBall shootBall = new ShootBall();
-	final static GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
-	final static GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
+	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
+	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
+	final IntakeBall intakeBall = new IntakeBall();
+	final ShootBall shootBall = new ShootBall();
+	final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
+	final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
 	
-	final static StopShooter stopShooter = new StopShooter();
-	final static SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
-	
-	private final static String[] splash ={ "ooo        ooooo                   .o8                                .o8  ",
-			"`88.       .888'                  \"888                               \"888  ",
-			" 888b     d'888  oooo  oooo   .oooo888   .ooooo.  oooo d8b  .oooo.    888oooo. ",
-			" 8 Y88. .P  888  `888  `888  d88' `888  d88' `\"Y8 `888\"\"8P `P  )88b   d88' `88b ",
-			" 8  `888'   888   888   888  888   888  888        888      .oP\"888   888   888 ",
-			" 8    Y     888   888   888  888   888  888   .o8  888     d8(  888   888   888 ",
-			"o8o        o888o  `V88V\"V8P' `Y8bod88P\" `Y8bod8P' d888b    `Y888\"\"8o  `Y8bod8P' " };
-	
+	final StopShooter stopShooter = new StopShooter();
+	final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
+		
 	//Instantiating Commands that deal with the Drive Train
-	//final static Drive drive = new Drive();
+	final Drive drive = new Drive();
     
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-    	
-    	
-    	
-    	System.out.println("Initializing Subsystems");
-    	
+    	    	
     	DriveTrain.getInstance();
     	ReleaseMechanism.getInstance();
     	Shooter.getInstance();
     	ShooterAim.getInstance();
-    	
-    	System.out.println("Initializing Commands");
     	    	
     	//Instantiating Commands that deal with Autonomous 	
     	final DefaultAutonomousCommandGroup defaultAutonomous = new DefaultAutonomousCommandGroup();
-    	
-        System.out.println("Commands Successfully Initialized");
-        
-        
-        System.out.println("Binding Command to Buttons");
         
         //Binding Commands that deal with the Shooter
         UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
         UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         
-        //UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
-        //UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
+        UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
+        UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         
-       // UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
-        //UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
+        UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
+        UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
         
-        //new JoystickButton(new Joystick(0), 3).whenPressed(stopShooter);
-        //new JoystickButton(new Joystick(0), 4).whenPressed(spinToShootSpeed);
-        
-        System.out.println("Command Successfully Bound to Buttons");
-        
-        //TODO Test the SmartDashabord Integration with subsystems and commands
         SmartDashboard.putData("Shoot Ball Command", shootBall);
         SmartDashboard.putData("Intake Ball Command", intakeBall);
         
         SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
         chooser = new SendableChooser();
-        //chooser.addDefault("Drive", drive);
+        chooser.addDefault("Drive", drive);
         chooser.addDefault("Default Auto", defaultAutonomous);
 //        chooser.addObject("My Auto", new MyAutoCommand());
         SmartDashboard.putData("Auto mode", chooser);
         
-        //Scheduler.getInstance().add(drive);
+        Scheduler.getInstance().add(drive);
         Scheduler.getInstance().add(stopShooter);
         
-        Scheduler.getInstance().add(new Drive());
-        
         SmartDashboard.putData(Scheduler.getInstance());
-        for(String i : splash){
-    		System.out.println(i);
-    	}
     }
 	
 	/**
@@ -178,18 +148,13 @@ public class Robot extends IterativeRobot {
         if (autonomousCommand != null) autonomousCommand.cancel();
         ShooterAim.getInstance().calibrate();
     }
-    double motorPosition;
     /**
      * This function is called periodically during operator control
      */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.getNumber("Motor Position", motorPosition);
-		ShooterAim.getInstance().setPosition(motorPosition);
-		//System.out.println("Left Drive" + UIConfig.getInstance().getLeftDrive());
-		//System.out.println("Right Drive" + UIConfig.getInstance().getRightDrive());
+		
 		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().getPosition());	
-		SmartDashboard.putNumber("Bus Voltage", ShooterAim.getInstance().motor().getBusVoltage());
 		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().motor().getOutputVoltage());
 		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().motor().getForwardLimitOK());
 		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().motor().getReverseLimitOK());

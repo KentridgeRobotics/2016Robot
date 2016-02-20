@@ -7,47 +7,30 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterAimCommand extends Command{
 	
+	public enum Mode { UP, DOWN, RETAIN_POSITION }
+	private Mode currentMode;
 	
-	private static final int UP_MODE = 0;
-	private static final int DOWN_MODE = 1;
-		
-	private static int CURRENT_MODE;
-	
-	public ShooterAimCommand(boolean goUp) {
+	public ShooterAimCommand(Mode mode) {
 		requires(ShooterAim.getInstance());
-		if(goUp){
-			CURRENT_MODE = UP_MODE;
-			System.out.println("::UP Mode Engaged::");
-		}
-		else {
-			CURRENT_MODE = DOWN_MODE;
-			System.out.println("::DOWN Mode Engaged::");
-		}
-	}
-	
-	public ShooterAimCommand() {
-		requires(ShooterAim.getInstance());
-		CURRENT_MODE = -1;
-		System.out.println("NO Mode Specified");
+		this.currentMode = mode;
 	}
 	
 	@Override
 	protected void initialize() {
-		System.out.println("Targeting System Engaged: " + CURRENT_MODE); 
 	}
 
 	@Override
 	protected void execute() {
-		switch(CURRENT_MODE) {
-			case UP_MODE:
+		switch(currentMode) {
+			case UP:
 				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + UIConfig.getInstance().getAIM_INCREMENT());
 				System.out.println("Moving UP");
 				break;
-			case DOWN_MODE:
+			case DOWN:
 				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - UIConfig.getInstance().getAIM_INCREMENT());
 				System.out.println("Moving DOWN");
 				break;
-			default:
+			case RETAIN_POSITION:
 				ShooterAim.getInstance().retainCurrentPosition();
 				break;
 		}

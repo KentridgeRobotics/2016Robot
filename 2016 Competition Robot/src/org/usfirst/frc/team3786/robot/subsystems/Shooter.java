@@ -17,8 +17,8 @@ public class Shooter extends Subsystem{
 	
 	private static final double SHOOT_SPEED = -0.75;
 	private static final double INTAKE_SPEED = 0.3;
-	private static DigitalInput haveBall;
-	private static boolean wheelsSpinning;
+	private DigitalInput haveBall;
+	private boolean wheelsSpinning;
 	
 	private Talon shooterWheels;
 		
