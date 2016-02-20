@@ -16,7 +16,7 @@ public class Shooter extends Subsystem{
 	private static Shooter instance;
 	
 	private static final double SHOOT_SPEED = -0.75;
-	private static final double INTAKE_SPEED = 0.3;
+	private static final double INTAKE_SPEED = 0.15;
 	private DigitalInput haveBall;
 	private boolean wheelsSpinning;
 	
@@ -56,6 +56,14 @@ public class Shooter extends Subsystem{
 	 */
 	public void spinToIntakeSpeed() {
 		shooterWheels.set(INTAKE_SPEED);
+		wheelsSpinning = true;
+	}
+	
+	/**
+	 * Spin the wheels to intake speed
+	 */
+	public void spinToLowGoalSpeed() {
+		shooterWheels.set(-INTAKE_SPEED);
 		wheelsSpinning = true;
 	}
 	

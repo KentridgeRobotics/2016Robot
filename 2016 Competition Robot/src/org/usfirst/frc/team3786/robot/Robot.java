@@ -19,6 +19,7 @@ import org.usfirst.frc.team3786.robot.commands.shooting.SpinToShootSpeed;
 import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3786.robot.subsystems.NewShooter;
 import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
 import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
@@ -39,18 +40,22 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     
   //Instantiating Commands that deal with the Shooter
-	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
-	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
-	final IntakeBall intakeBall = new IntakeBall();
-	final ShootBall shootBall = new ShootBall();
-	final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
-	final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
+	//final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
+	//final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
+	//final IntakeBall intakeBall = new IntakeBall();
+	//final ShootBall shootBall = new ShootBall();
+	//final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
+	//final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
 	
-	final StopShooter stopShooter = new StopShooter();
-	final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
+	//final StopShooter stopShooter = new StopShooter();
+	//final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
 		
 	//Instantiating Commands that deal with the Drive Train
 	final Drive drive = new Drive();
+	
+	final Joystick mainStick = new Joystick(0);
+	final JoystickButton triggerButton = new JoystickButton(mainStick, 1);
+	final JoystickButton loadButton = new JoystickButton(mainStick, 2);
     
     /**
      * This function is run when the robot is first started up and should be
@@ -59,25 +64,33 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	    	
     	DriveTrain.getInstance();
-    	ReleaseMechanism.getInstance();
-    	Shooter.getInstance();
+    	//ReleaseMechanism.getInstance();
+    	//Shooter.getInstance();
     	ShooterAim.getInstance();
+    	
+    	//Binding Commands that deal with the New Shooter class
+    	NewShooter.getInstance();
+    	triggerButton.whileHeld(NewShooter.getInstance().triggerButton);
+    	loadButton.whileHeld(NewShooter.getInstance().loadButton);
     	    	
     	//Instantiating Commands that deal with Autonomous 	
     	final DefaultAutonomousCommandGroup defaultAutonomous = new DefaultAutonomousCommandGroup();
         
-        //Binding Commands that deal with the Shooter
-        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
-        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         
-        UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
-        UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
+    	
+        //UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
+        //UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         
-        UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
-        UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
+        //UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
+        //UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         
-        SmartDashboard.putData("Shoot Ball Command", shootBall);
-        SmartDashboard.putData("Intake Ball Command", intakeBall);
+        //UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
+        //UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
+        
+        //SmartDashboard.putData("Shoot Ball Command", shootBall);
+        //SmartDashboard.putData("Intake Ball Command", intakeBall);
+    	
+    	
         
         SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
@@ -88,8 +101,6 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Auto mode", chooser);
         
         Scheduler.getInstance().add(drive);
-        Scheduler.getInstance().add(stopShooter);
-        
         SmartDashboard.putData(Scheduler.getInstance());
     }
 	
