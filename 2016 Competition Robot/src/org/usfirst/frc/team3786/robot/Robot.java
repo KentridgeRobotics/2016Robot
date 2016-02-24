@@ -10,8 +10,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3786.robot.commands.auto.DefaultAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
-import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
-import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
 import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
@@ -40,12 +38,10 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     
   //Instantiating Commands that deal with the Shooter
-//	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
-//	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
+	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
+	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
 	final IntakeBall intakeBall = new IntakeBall();
 	final ShootBall shootBall = new ShootBall();
-//	final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
-//	final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
 	
 	final StopShooter stopShooter = new StopShooter();
 	final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
@@ -78,8 +74,8 @@ public class Robot extends IterativeRobot {
         
         
     	
-//        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
-//        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
+        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
+        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         //UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
         //UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         
@@ -114,7 +110,6 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		ShooterAim.getInstance().setPosition(currentPosition);
 	}
 
 	/**
@@ -163,34 +158,26 @@ public class Robot extends IterativeRobot {
      * This function is called periodically during operator control
      */
     
-    double currentPosition = 0.0;
 	public void teleopPeriodic() {
 		
 		Scheduler.getInstance().run();
 		
-		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().getPosition());	
-//		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().motor().getOutputVoltage());
-//		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().motor().getForwardLimitOK());
-//		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().motor().getReverseLimitOK());
 		SmartDashboard.putBoolean("Ball Engagement", Shooter.getInstance().checkForBall().get());
 		
 		if(UIConfig.getInstance().getRightStick().getRawButton(9)){
 			ShooterAim.getInstance().setPosition(.5);
-			currentPosition = ShooterAim.getInstance().getPosition();
 			System.out.println("Moving Forward");
 		}
 		else if(UIConfig.getInstance().getLeftStick().getRawButton(11)) {
 			ShooterAim.getInstance().setPosition(-.5);
-			currentPosition = ShooterAim.getInstance().getPosition();
 			System.out.println("Moving Backwards");
 		}
 		else if(UIConfig.getInstance().getLeftStick().getRawButton(6)) {
 			ShooterAim.getInstance().setPosition(-0.35);
-			currentPosition = ShooterAim.getInstance().getPosition();
 			System.out.println("Moving to  -.35");
 		}
 		else{
-			ShooterAim.getInstance().setPosition(currentPosition);
+			ShooterAim.getInstance().setPosition(0);
 		}
 	}
     
