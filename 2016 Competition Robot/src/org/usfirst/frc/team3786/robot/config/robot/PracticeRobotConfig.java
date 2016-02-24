@@ -25,15 +25,15 @@ public class PracticeRobotConfig extends RobotConfig{
 	
 	private static final int BALL_ENGAGEMENT = 4;
 	
-	private static final int ELEVATION_MOTOR = 17;
+	private static final int ELEVATION_MOTOR = 18;
 	
 	private static final int ELEVATION_LIMIT_TOP = 0;
 	private static final int ELEVATION_LIMIT_BOTTOM = 0;
 	
 	//Shooter PID
-	private static final double SHOOTER_P = 1;
+	private static final double SHOOTER_P = 350;
 	private static final double SHOOTER_I = 0;
-	private static final double SHOOTER_D = 1;
+	private static final double SHOOTER_D = 200;
 	
 	//Lifter Mechanisms
 	private static final int LIFT_ONE = 0;

@@ -55,9 +55,17 @@ public class TankDrive extends UIConfig{
 		stopShooterButton = new JoystickButton(rightStick, STOP_SHOOTER_BUTTON);
 	}
 	
+	public Joystick getLeftStick() {
+		return leftStick;
+	}
+	
+	public Joystick getRightStick() {
+		return rightStick;
+	}
+	
 	@Override
 	public double getLeftDrive() {
-		return leftStick.getY();
+		return -leftStick.getY();
 	}
 
 	@Override

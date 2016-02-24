@@ -16,7 +16,7 @@ public class Shooter extends Subsystem{
 	private static Shooter instance;
 	
 	private static final double SHOOT_SPEED = -0.75;
-	private static final double INTAKE_SPEED = 0.15;
+	private static final double INTAKE_SPEED = 0.25;
 	private DigitalInput haveBall;
 	private boolean wheelsSpinning;
 	
@@ -85,6 +85,6 @@ public class Shooter extends Subsystem{
 		
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new StopShooter());
+		//setDefaultCommand(new StopShooter());
 	}
 }

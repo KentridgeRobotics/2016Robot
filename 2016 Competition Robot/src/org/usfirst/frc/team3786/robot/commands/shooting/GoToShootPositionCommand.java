@@ -22,10 +22,11 @@ public class GoToShootPositionCommand extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		if(ShooterAim.getInstance().getPosition() == ShooterAim.SHOOT_POS)
-			return true;
-		else
-			return false;
+//		if(ShooterAim.getInstance().getPosition() == ShooterAim.SHOOT_POS)
+//			return true;
+//		else
+//			return false;
+		return false;
 	}
 
 	@Override
