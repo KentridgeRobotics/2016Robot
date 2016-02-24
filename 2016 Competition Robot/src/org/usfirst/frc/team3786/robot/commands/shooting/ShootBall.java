@@ -13,10 +13,8 @@ public class ShootBall extends Command{
 	
 	@Override
 	protected void initialize() {
-		System.out.println("COMMAND - ShootBall Initialized");
-		Shooter.getInstance().spinToShootSpeed();
 		ReleaseMechanism.getInstance().extend();
-		System.out.println("Trying to Shoot Ball");
+		System.out.println("Shooting Ball");
 	}
 
 	@Override

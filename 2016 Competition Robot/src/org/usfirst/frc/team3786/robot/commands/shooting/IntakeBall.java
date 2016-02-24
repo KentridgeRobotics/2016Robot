@@ -14,9 +14,8 @@ public class IntakeBall extends Command{
 	
 	@Override
 	protected void initialize() {
-		System.out.println("COMMAND - IntakeBall Initialized");
 		Shooter.getInstance().spinToIntakeSpeed();
-		System.out.println("Trying to Intake Ball");
+		System.out.println("Intaking Ball");
 	}
 
 	@Override
@@ -31,6 +30,7 @@ public class IntakeBall extends Command{
 	@Override
 	protected void end() {
 		Shooter.getInstance().STOP();
+		System.out.println("Ball Captured");
 	}
 
 	@Override
