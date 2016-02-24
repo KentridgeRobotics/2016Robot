@@ -22,7 +22,7 @@ public class TankDrive extends UIConfig{
 	private static final int EXTEND_HOOK= 7;
 	private static final int PULL_HOOK= 8;
 	
-	private static final double AIM_INCREMENT = -.015;
+	private static final double AIM_INCREMENT = -.15;
 	
 	//******************END******************
 	

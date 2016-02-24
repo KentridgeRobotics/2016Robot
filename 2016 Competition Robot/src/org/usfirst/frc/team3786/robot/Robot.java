@@ -169,18 +169,18 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		
 		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().getPosition());	
-		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().motor().getOutputVoltage());
-		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().motor().getForwardLimitOK());
-		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().motor().getReverseLimitOK());
+//		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().motor().getOutputVoltage());
+//		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().motor().getForwardLimitOK());
+//		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().motor().getReverseLimitOK());
 		SmartDashboard.putBoolean("Ball Engagement", Shooter.getInstance().checkForBall().get());
 		
 		if(UIConfig.getInstance().getRightStick().getRawButton(9)){
-			ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + 0.1);
+			ShooterAim.getInstance().setPosition(.5);
 			currentPosition = ShooterAim.getInstance().getPosition();
 			System.out.println("Moving Forward");
 		}
 		else if(UIConfig.getInstance().getLeftStick().getRawButton(11)) {
-			ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - 0.2);
+			ShooterAim.getInstance().setPosition(-.5);
 			currentPosition = ShooterAim.getInstance().getPosition();
 			System.out.println("Moving Backwards");
 		}
