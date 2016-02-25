@@ -8,7 +8,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3786.robot.commands.auto.DefaultAutonomousCommandGroup;
+import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
+import org.usfirst.frc.team3786.robot.commands.auto.ShootAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
 import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
 import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
@@ -39,24 +40,45 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     
-  //Instantiating Commands that deal with the Shooter
+//    Instantiating Commands that deal with the Shooter
 	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
 	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
 	final IntakeBall intakeBall = new IntakeBall();
 	final ShootBall shootBall = new ShootBall();
 	final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
 	final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
-	
 	final StopShooter stopShooter = new StopShooter();
 	final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
 		
-	//Instantiating Commands that deal with the Drive Train
+//	Instantiating Commands that deal with the Drive Train
 	final Drive drive = new Drive();
 	
-	//final Joystick mainStick = new Joystick(0);
+	final ShootAutonomousCommandGroup justShootAutonomous = new ShootAutonomousCommandGroup();
+	final LowBarAutonomousCommandGroup lowBarAuto = new LowBarAutonomousCommandGroup();
+	
+//	For Testing purposes only
+//	final Joystick mainStick = new Joystick(0);
 //	final JoystickButton triggerButton = new JoystickButton(mainStick, 1);
 //	final JoystickButton loadButton = new JoystickButton(mainStick, 2);
     
+	private final String[] splash = {
+			" __   __  __   __  ______   _______  ______    _______  _______ ",
+			"|  |_|  ||  | |  ||      | |       ||    _ |  |   _   ||  _    |",
+			"|       ||  | |  ||  _    ||       ||   | ||  |  |_|  || |_|   |",
+			"|       ||  |_|  || | |   ||       ||   |_||_ |       ||       |",
+			"|       ||       || |_|   ||      _||    __  ||       ||  _   | ",
+			"| ||_|| ||       ||       ||     |_ |   |  | ||   _   || |_|   |",
+			"|_|   |_||_______||______| |_______||___|  |_||__| |__||_______|",
+			"",
+			" _______  _______  ____   ___     ",
+			"|       ||  _    ||    | |   |    ",
+			"|____   || | |   | |   | |   |___ ",
+			" ____|  || | |   | |   | |    _  |",
+			"| ______|| |_|   | |   | |   | | |",
+			"| |_____ |       | |   | |   |_| |",
+			"|_______||_______| |___| |_______|"
+	};
+	
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
@@ -72,10 +94,7 @@ public class Robot extends IterativeRobot {
 //    	NewShooter.getInstance();
 //    	triggerButton.whileHeld(NewShooter.getInstance().triggerButton);
 //    	loadButton.whileHeld(NewShooter.getInstance().loadButton);
-    	    	
-    	//Instantiating Commands that deal with Autonomous 	
-    	final DefaultAutonomousCommandGroup defaultAutonomous = new DefaultAutonomousCommandGroup();
-        
+    	        
         UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
         UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
@@ -87,18 +106,21 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Shoot Ball Command", shootBall);
         SmartDashboard.putData("Intake Ball Command", intakeBall);
     	
-    	
-        
         SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
         chooser = new SendableChooser();
         chooser.addDefault("Drive", drive);
-        chooser.addDefault("Default Auto", defaultAutonomous);
-//        chooser.addObject("My Auto", new MyAutoCommand());
-        SmartDashboard.putData("Auto mode", chooser);
+        chooser.addDefault("Default Auto", justShootAutonomous);
+        chooser.addDefault("Low Bar Autonomous", lowBarAuto);
+        
+        SmartDashboard.putData("Select Autonomous", chooser);
         
         Scheduler.getInstance().add(drive);
+        
         SmartDashboard.putData(Scheduler.getInstance());
+        
+        for(String s : splash) 
+        	System.out.println(s);
         
         System.out.println("Mudcrab 2016 - Initialized");
     }
