@@ -4,9 +4,7 @@ import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.Jaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * This Class holds methods to aim the shooter
@@ -38,32 +36,15 @@ public class ShooterAim extends Subsystem{
 		
 		aimMotor.enableControl();
 		
-		currentPosition = 0.0;
 	}
 	
-	public void calibrate(){
-		//aimMotor.enableControl(180);
-		//aimMotor.reset();
-		//setPosition(0);
-		//while(aimMotor.getReverseLimitOK()) {}; //wait for limit switch
-		//System.out.println("Limit HIT");
-		//aimMotor.disableControl();
-		//aimMotor.enableControl(0);
-		aimMotor.set(-0.2);
-		System.out.println("DONE CALIBRATING");
-		System.out.println("TRYING TO MOVE");
-	}
-		
+			
 	public static ShooterAim getInstance() {
 		if(instance == null)
 			instance = new ShooterAim();
 		return instance;
 	}
-	
-	public CANJaguar motor() {
-		return aimMotor;
-	}
-	
+		
 	/**
 	 * @param position The position we want the shooter to be
 	 */
@@ -76,28 +57,29 @@ public class ShooterAim extends Subsystem{
 	 * Move the shooter to the user defined UP position
 	 */
 	public void upPosition() {
-		aimMotor.set(UP_POS);
+		setPosition(UP_POS);
 	}
 	
 	/**
 	 * Move the shooter to the user defined Shoot position
 	 */
 	public void shootPosition() {
-		aimMotor.set(SHOOT_POS);
+		setPosition(SHOOT_POS);
 	}
 	
 	/**
 	 * Move the shooter to the user defined intake position
 	 */
 	public void intakePosition() {
-		aimMotor.set(DOWN_POS);
+		setPosition(DOWN_POS);
 	}
 	
 	/**
 	 * Tells Shooter to retain current position/angle
 	 */
 	public void retainCurrentPosition() {
-		aimMotor.set(currentPosition);
+		//aimMotor.set(currentPosition);
+		aimMotor.setSetpoint(currentPosition);
 	}
 	
 	/**
@@ -108,9 +90,24 @@ public class ShooterAim extends Subsystem{
 		return aimMotor.getPosition();
 	}
 	
+	public boolean getForwardLimit() {
+		return aimMotor.getForwardLimitOK();
+	}
+	
+	public boolean getBackLimit() {
+		return aimMotor.getReverseLimitOK();
+	}
+	
+	public double getCurrentPosition() {
+		return currentPosition;
+	}
+	
+	public double getOutputVoltage() {
+		return aimMotor.getOutputVoltage();
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 		setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
 	}
 }

@@ -103,6 +103,9 @@ public class Robot extends IterativeRobot {
         UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
         UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
         
+        new JoystickButton(UIConfig.getInstance().getRightStick(), 12).whenPressed(spinToShootSpeed);
+        new JoystickButton(UIConfig.getInstance().getRightStick(), 11).whenPressed(stopShooter);
+        
         SmartDashboard.putData("Shoot Ball Command", shootBall);
         SmartDashboard.putData("Intake Ball Command", intakeBall);
     	
@@ -136,7 +139,6 @@ public class Robot extends IterativeRobot {
 	
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		ShooterAim.getInstance().setPosition(currentPosition);
 	}
 
 	/**
@@ -179,22 +181,36 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
-        ShooterAim.getInstance().calibrate();
     }
     /**
      * This function is called periodically during operator control
      */
-    
-    double currentPosition = 0.0;
-	public void teleopPeriodic() {
-		
+    //double currentPosition;
+    public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
 		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().getPosition());	
-		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().motor().getOutputVoltage());
-		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().motor().getForwardLimitOK());
-		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().motor().getReverseLimitOK());
+		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().getOutputVoltage());
+		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().getForwardLimit());
+		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().getBackLimit());
 		SmartDashboard.putBoolean("Ball Engagement", Shooter.getInstance().checkForBall().get());
+		
+//		if(UIConfig.getInstance().getLeftStick().getRawButton(3)){
+//			ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - 0.1);
+//			currentPosition  = ShooterAim.getInstance().getPosition();
+//			System.out.println("moving Up");
+//		}
+//			
+//		else if(UIConfig.getInstance().getLeftStick().getRawButton(5)) {
+//			ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + 0.1);
+//			currentPosition  = ShooterAim.getInstance().getPosition();
+//			System.out.println("Moving Down");
+//		}
+//		else {
+//			ShooterAim.getInstance().setPosition(currentPosition);
+//		}
+//		SmartDashboard.putNumber("Current Position", currentPosition);
+		
 	}
     
     /**

@@ -19,13 +19,13 @@ public class TankDrive extends UIConfig{
 	
 	
 	/* Left Joystick */
-	private static final int AIM_UP_BUTTON = 2;
+	private static final int AIM_UP_BUTTON = 5;
 	private static final int AIM_DOWN_BUTTON = 3;
 	
 	private static final int INTAKE_POSITION_BUTTON = 4;
 	private static final int SHOOT_POSITION_BUTTON= 6;
 	
-	private static final double AIM_INCREMENT = -.015;
+	private static final double AIM_INCREMENT = -.1;
 	//******************END******************
 	
 	private Joystick leftStick, rightStick;
