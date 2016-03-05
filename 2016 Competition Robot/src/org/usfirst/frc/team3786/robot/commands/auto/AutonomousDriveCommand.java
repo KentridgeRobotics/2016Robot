@@ -10,7 +10,7 @@ public class AutonomousDriveCommand extends Command{
 	private final double rightTurnSpeed = .2;
 	
 	private final double leftDriveSpeed = 1;
-	private final double rightDriveSpeed = 1;
+	private final double rightDriveSpeed = -1;
 	
 	public enum Direction { Forwards, Backwards , Left, Right}
 	
@@ -30,10 +30,10 @@ public class AutonomousDriveCommand extends Command{
 	protected void execute() {
 		switch(desiredDirection) {
 		case Forwards:
-			DriveTrain.getInstance().drive(rightDriveSpeed, -rightDriveSpeed);
+			DriveTrain.getInstance().drive(leftDriveSpeed, rightDriveSpeed);
 			break;
 		case Backwards:
-			DriveTrain.getInstance().drive(-leftDriveSpeed, rightDriveSpeed);
+			DriveTrain.getInstance().drive(-leftDriveSpeed, -rightDriveSpeed);
 			break;
 		case Left:
 			DriveTrain.getInstance().drive(-leftTurnSpeed, rightTurnSpeed);

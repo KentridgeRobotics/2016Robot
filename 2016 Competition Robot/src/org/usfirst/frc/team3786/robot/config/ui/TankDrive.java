@@ -77,14 +77,14 @@ public class TankDrive extends UIConfig{
 	public double getLeftDrive() {
 		leftOut = -leftStick.getY();
 		SmartDashboard.putNumber("Left Stick", leftOut);
-		return leftOut * reductionFactor;
+		return Math.tan((Math.PI/4) * leftOut);
 	}
 
 	@Override
 	public double getRightDrive() {
 		rightOut = rightStick.getY();
 		SmartDashboard.putNumber("Right Out", rightOut);
-		return rightOut * reductionFactor;
+		return Math.tan((Math.PI/4) * rightOut);
 	}
 
 	@Override

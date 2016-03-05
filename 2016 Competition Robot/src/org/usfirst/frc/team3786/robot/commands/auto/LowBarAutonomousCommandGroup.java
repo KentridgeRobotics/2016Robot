@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class LowBarAutonomousCommandGroup extends CommandGroup{
 	public LowBarAutonomousCommandGroup() {
-		addSequential(new AutonomousDriveCommand(AutonomousDriveCommand.Direction.Forwards), 2);
+		addSequential(new AutonomousDriveCommand(AutonomousDriveCommand.Direction.Backwards), 1);
 		addSequential(new AutonomousDriveCommand(AutonomousDriveCommand.Direction.Right), .5);
 		
 //		addSequential(new GoToShootPositionCommand(), 2);
