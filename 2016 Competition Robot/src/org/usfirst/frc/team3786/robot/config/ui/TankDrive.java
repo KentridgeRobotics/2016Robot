@@ -3,6 +3,7 @@ package org.usfirst.frc.team3786.robot.config.ui;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class TankDrive extends UIConfig{
     
@@ -25,7 +26,7 @@ public class TankDrive extends UIConfig{
 	private static final int INTAKE_POSITION_BUTTON = 4;
 	private static final int SHOOT_POSITION_BUTTON= 6;
 	
-	private static final double AIM_INCREMENT = -.1;
+	private static final double AIM_INCREMENT = -.05;
 	//******************END******************
 	
 	private Joystick leftStick, rightStick;
@@ -43,21 +44,25 @@ public class TankDrive extends UIConfig{
 	
 	private JoystickButton stopShooterButton;
 	
+	private static double leftOut, rightOut;
+	
+	private static final double reductionFactor = 0.85;
+	
 	public TankDrive() {
 		leftStick = new Joystick(0);
 		rightStick = new Joystick(1);
 		
 		shootBallButton = new JoystickButton(rightStick, SHOOT_BUTTON);
 		intakeBallButton = new JoystickButton(rightStick, INTAKE_BUTTON);
-		spinToShooterSpeed = new JoystickButton(rightStick, 8);
+		spinToShooterSpeed = new JoystickButton(leftStick, 1);
 		
 		aimUpButton = new JoystickButton(leftStick, AIM_UP_BUTTON);
 		aimDownButton = new JoystickButton(leftStick, AIM_DOWN_BUTTON);
 		
-		intakePositionButton = new JoystickButton(leftStick, INTAKE_POSITION_BUTTON);
-		shootPositionButton = new JoystickButton(leftStick, SHOOT_POSITION_BUTTON);
+		intakePositionButton = new JoystickButton(rightStick, INTAKE_POSITION_BUTTON);
+		shootPositionButton = new JoystickButton(rightStick, SHOOT_POSITION_BUTTON);
 		
-		stopShooterButton = new JoystickButton(rightStick, STOP_SHOOTER_BUTTON);
+		stopShooterButton = new JoystickButton(leftStick, STOP_SHOOTER_BUTTON);
 	}
 	
 	public Joystick getLeftStick() {
@@ -70,12 +75,16 @@ public class TankDrive extends UIConfig{
 	
 	@Override
 	public double getLeftDrive() {
-		return -leftStick.getY();
+		leftOut = -leftStick.getY();
+		SmartDashboard.putNumber("Left Stick", leftOut);
+		return leftOut * reductionFactor;
 	}
 
 	@Override
 	public double getRightDrive() {
-		return rightStick.getY();
+		rightOut = rightStick.getY();
+		SmartDashboard.putNumber("Right Out", rightOut);
+		return rightOut * reductionFactor;
 	}
 
 	@Override

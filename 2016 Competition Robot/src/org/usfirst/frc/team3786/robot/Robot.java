@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
+import org.usfirst.frc.team3786.robot.commands.auto.AutonomousDriveCommand;
+import org.usfirst.frc.team3786.robot.commands.auto.DoNothing;
+import org.usfirst.frc.team3786.robot.commands.auto.DriveForwards;
 import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.auto.ShootAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
@@ -18,6 +21,7 @@ import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.commands.shooting.SpinToShootSpeed;
 import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
+import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3786.robot.subsystems.NewShooter;
@@ -51,11 +55,12 @@ public class Robot extends IterativeRobot {
 	final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
 		
 //	Instantiating Commands that deal with the Drive Train
-	final Drive drive = new Drive();
+	//final Drive drive = new Drive();
 	
 	final ShootAutonomousCommandGroup justShootAutonomous = new ShootAutonomousCommandGroup();
 	final LowBarAutonomousCommandGroup lowBarAuto = new LowBarAutonomousCommandGroup();
-	
+	final DriveForwards driveForward = new DriveForwards();
+	final DoNothing doNothing = new DoNothing();
 //	For Testing purposes only
 //	final Joystick mainStick = new Joystick(0);
 //	final JoystickButton triggerButton = new JoystickButton(mainStick, 1);
@@ -84,7 +89,7 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-    	    	
+    	RobotConfig.getInstance();
     	DriveTrain.getInstance();
     	ReleaseMechanism.getInstance();
     	Shooter.getInstance();
@@ -103,8 +108,8 @@ public class Robot extends IterativeRobot {
         UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
         UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
         
-        new JoystickButton(UIConfig.getInstance().getRightStick(), 12).whenPressed(spinToShootSpeed);
-        new JoystickButton(UIConfig.getInstance().getRightStick(), 11).whenPressed(stopShooter);
+        UIConfig.getInstance().spinToShooterSpeed().whenPressed(spinToShootSpeed);
+        UIConfig.getInstance().stopShooterButton().whenPressed(stopShooter);
         
         SmartDashboard.putData("Shoot Ball Command", shootBall);
         SmartDashboard.putData("Intake Ball Command", intakeBall);
@@ -112,13 +117,14 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
         chooser = new SendableChooser();
-        chooser.addDefault("Drive", drive);
+        chooser.addDefault("Drive", driveForward);
         chooser.addDefault("Default Auto", justShootAutonomous);
         chooser.addDefault("Low Bar Autonomous", lowBarAuto);
+        chooser.addDefault("Do Nothing", doNothing);
         
         SmartDashboard.putData("Select Autonomous", chooser);
         
-        Scheduler.getInstance().add(drive);
+        //Scheduler.getInstance().add(drive);
         
         SmartDashboard.putData(Scheduler.getInstance());
         
@@ -185,7 +191,7 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-    //double currentPosition;
+    double currentPosition;
     public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
@@ -194,23 +200,8 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().getForwardLimit());
 		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().getBackLimit());
 		SmartDashboard.putBoolean("Ball Engagement", Shooter.getInstance().checkForBall().get());
-		
-//		if(UIConfig.getInstance().getLeftStick().getRawButton(3)){
-//			ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - 0.1);
-//			currentPosition  = ShooterAim.getInstance().getPosition();
-//			System.out.println("moving Up");
-//		}
-//			
-//		else if(UIConfig.getInstance().getLeftStick().getRawButton(5)) {
-//			ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + 0.1);
-//			currentPosition  = ShooterAim.getInstance().getPosition();
-//			System.out.println("Moving Down");
-//		}
-//		else {
-//			ShooterAim.getInstance().setPosition(currentPosition);
-//		}
-//		SmartDashboard.putNumber("Current Position", currentPosition);
-		
+		SmartDashboard.putNumber("Current Position", currentPosition);
+		SmartDashboard.putNumber("Error", ShooterAim.getInstance().motor().getError());
 	}
     
     /**

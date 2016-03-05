@@ -16,9 +16,9 @@ public class ShooterAim extends Subsystem{
 	
 	private CANJaguar aimMotor;
 	//**************POSITIONS**************
-	public static final double DOWN_POS = 0;
-	public static final double UP_POS = 0;
-	public static final double SHOOT_POS = 0;
+	public static final double DOWN_POS = 0.5;
+	public static final double UP_POS = 0.0;
+	public static final double SHOOT_POS = 0.3;
 	
 	private static double currentPosition;
 	
@@ -27,7 +27,7 @@ public class ShooterAim extends Subsystem{
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
 		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
-				/*RobotConfig.getInstance().getCODES_PER_REV()*/180, 
+				RobotConfig.getInstance().getCODES_PER_REV(), 
 				RobotConfig.getInstance().getSHOOTER_P(), 
 				RobotConfig.getInstance().getSHOOTER_I(), 
 				RobotConfig.getInstance().getSHOOTER_D());
@@ -35,7 +35,6 @@ public class ShooterAim extends Subsystem{
 		aimMotor.configLimitMode(CANJaguar.LimitMode.SwitchInputsOnly);
 		
 		aimMotor.enableControl();
-		
 	}
 	
 			
@@ -44,7 +43,9 @@ public class ShooterAim extends Subsystem{
 			instance = new ShooterAim();
 		return instance;
 	}
-		
+	public CANJaguar motor() {
+		return aimMotor;
+	}
 	/**
 	 * @param position The position we want the shooter to be
 	 */
@@ -78,8 +79,7 @@ public class ShooterAim extends Subsystem{
 	 * Tells Shooter to retain current position/angle
 	 */
 	public void retainCurrentPosition() {
-		//aimMotor.set(currentPosition);
-		aimMotor.setSetpoint(currentPosition);
+		aimMotor.set(currentPosition);
 	}
 	
 	/**
@@ -108,6 +108,6 @@ public class ShooterAim extends Subsystem{
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
+		//setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
 	}
 }

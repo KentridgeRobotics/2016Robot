@@ -11,7 +11,7 @@ public class CompetitionRobotConfig extends RobotConfig{
 	private static final double DRIVE_P = 0;
 	private static final double DRIVE_I = 0;
 	private static final double DRIVE_D = 0;
-	private static final int ENCODER_CODES_PER_REVOLUTION = 360;
+	private static final int ENCODER_CODES_PER_REVOLUTION = 180;
 	
 	//DIO Channels
 	private static final int[] LEFT_ENCODER_CHANS = {0,1}; //{A CHANNEL, B CHANNEL}
@@ -31,9 +31,9 @@ public class CompetitionRobotConfig extends RobotConfig{
 	private static final int ELEVATION_LIMIT_BOTTOM = 0;
 	
 	//Shooter PID
-	private static final double SHOOTER_P = 350;
+	private static final double SHOOTER_P = 400;
 	private static final double SHOOTER_I = 0;
-	private static final double SHOOTER_D = 200;
+	private static final double SHOOTER_D = 150;
 	
 	//Lifter Mechanisms
 	private static final int LIFT_ONE = 0;
