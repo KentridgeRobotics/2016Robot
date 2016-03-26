@@ -38,6 +38,7 @@ public abstract class UIConfig {
 	
 	public abstract Button intakePositionButton();
 	public abstract Button shootPositionButton();
+	public abstract Button travelPositionButton();
 	
 	//Stop the whole shooter Button
 	public abstract Button stopShooterButton();

@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class DriveForwards extends CommandGroup{
 	public DriveForwards() {
-		addSequential(new AutonomousDriveCommand(AutonomousDriveCommand.Direction.Forwards), 1);
+		addSequential(new AutonomousDriveCommand(AutonomousDriveCommand.Direction.Forwards), 1.2);
 	}
 }
+	

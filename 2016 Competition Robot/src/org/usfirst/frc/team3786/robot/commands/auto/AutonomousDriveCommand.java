@@ -9,8 +9,8 @@ public class AutonomousDriveCommand extends Command{
 	private final double leftTurnSpeed = .2;
 	private final double rightTurnSpeed = .2;
 	
-	private final double leftDriveSpeed = 1;
-	private final double rightDriveSpeed = -1;
+	private final double leftDriveSpeed = .8;
+	private final double rightDriveSpeed = -.8;
 	
 	public enum Direction { Forwards, Backwards , Left, Right}
 	

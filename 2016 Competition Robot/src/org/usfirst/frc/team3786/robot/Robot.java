@@ -2,32 +2,33 @@
 package org.usfirst.frc.team3786.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+//import edu.wpi.first.wpilibj.Joystick;
+//import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
-import org.usfirst.frc.team3786.robot.commands.auto.AutonomousDriveCommand;
+//import org.usfirst.frc.team3786.robot.commands.auto.AutonomousDriveCommand;
 import org.usfirst.frc.team3786.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team3786.robot.commands.auto.DriveForwards;
-import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
-import org.usfirst.frc.team3786.robot.commands.auto.ShootAutonomousCommandGroup;
+//import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
+//import org.usfirst.frc.team3786.robot.commands.auto.ShootAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
-import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
-import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
-import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
-import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
-import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
-import org.usfirst.frc.team3786.robot.commands.shooting.SpinToShootSpeed;
-import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
+//import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
+//import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
+//import org.usfirst.frc.team3786.robot.commands.shooting.GoToTravelPosition;
+//import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
+//import org.usfirst.frc.team3786.robot.commands.shooting.ShootBall;
+//import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
+//import org.usfirst.frc.team3786.robot.commands.shooting.SpinToShootSpeed;
+//import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team3786.robot.subsystems.NewShooter;
-import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
-import org.usfirst.frc.team3786.robot.subsystems.Shooter;
-import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
+//import org.usfirst.frc.team3786.robot.subsystems.NewShooter;
+//import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
+//import org.usfirst.frc.team3786.robot.subsystems.Shooter;
+//import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -45,20 +46,18 @@ public class Robot extends IterativeRobot {
     SendableChooser chooser;
     
 //    Instantiating Commands that deal with the Shooter
-	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
-	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
-	final IntakeBall intakeBall = new IntakeBall();
-	final ShootBall shootBall = new ShootBall();
-	final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
-	final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
-	final StopShooter stopShooter = new StopShooter();
-	final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
-		
+//	final ShooterAimCommand aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
+//	final ShooterAimCommand aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
+//	final IntakeBall intakeBall = new IntakeBall();
+//	final ShootBall shootBall = new ShootBall();
+//	final GoToIntakePositionCommand goToIntakePosition = new GoToIntakePositionCommand();
+//	final GoToShootPositionCommand goToShootPosition = new GoToShootPositionCommand();
+//	final GoToTravelPosition goToTravelPosition = new GoToTravelPosition();
+//	final StopShooter stopShooter = new StopShooter();
+//	final SpinToShootSpeed spinToShootSpeed = new SpinToShootSpeed();
 //	Instantiating Commands that deal with the Drive Train
-	//final Drive drive = new Drive();
+	final Drive drive = new Drive();
 	
-	final ShootAutonomousCommandGroup justShootAutonomous = new ShootAutonomousCommandGroup();
-	final LowBarAutonomousCommandGroup lowBarAuto = new LowBarAutonomousCommandGroup();
 	final DriveForwards driveForward = new DriveForwards();
 	final DoNothing doNothing = new DoNothing();
 //	For Testing purposes only
@@ -91,40 +90,39 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	RobotConfig.getInstance();
     	DriveTrain.getInstance();
-    	ReleaseMechanism.getInstance();
-    	Shooter.getInstance();
-    	ShooterAim.getInstance();
+//    	ReleaseMechanism.getInstance();
+//    	Shooter.getInstance();
+//    	ShooterAim.getInstance();
     	
     	//Binding Commands that deal with the New Shooter class
 //    	NewShooter.getInstance();
 //    	triggerButton.whileHeld(NewShooter.getInstance().triggerButton);
 //    	loadButton.whileHeld(NewShooter.getInstance().loadButton);
     	        
-        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
-        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
-        UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
-        UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
+//        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
+//        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
+//        UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
+//        UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
+//        UIConfig.getInstance().travelPositionButton().whenPressed(goToTravelPosition);
         
-        UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
-        UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
-        
-        UIConfig.getInstance().spinToShooterSpeed().whenPressed(spinToShootSpeed);
-        UIConfig.getInstance().stopShooterButton().whenPressed(stopShooter);
-        
-        SmartDashboard.putData("Shoot Ball Command", shootBall);
-        SmartDashboard.putData("Intake Ball Command", intakeBall);
-    	
-        SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
+//        UIConfig.getInstance().shootBallButton().whenPressed(shootBall);
+//        UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
+//        
+//        UIConfig.getInstance().spinToShooterSpeed().whenPressed(spinToShootSpeed);
+//        UIConfig.getInstance().stopShooterButton().whenPressed(stopShooter);
+//        
+//        SmartDashboard.putData("Shoot Ball Command", shootBall);
+//        SmartDashboard.putData("Intake Ball Command", intakeBall);
+//    	
+//        SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
         chooser = new SendableChooser();
         chooser.addDefault("Drive", driveForward);
-        chooser.addDefault("Default Auto", justShootAutonomous);
-        chooser.addDefault("Low Bar Autonomous", lowBarAuto);
         chooser.addDefault("Do Nothing", doNothing);
         
         SmartDashboard.putData("Select Autonomous", chooser);
         
-        //Scheduler.getInstance().add(drive);
+        Scheduler.getInstance().add(drive);
         
         SmartDashboard.putData(Scheduler.getInstance());
         
@@ -195,13 +193,13 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
-		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().getPosition());	
-		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().getOutputVoltage());
-		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().getForwardLimit());
-		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().getBackLimit());
-		SmartDashboard.putBoolean("Ball Engagement", Shooter.getInstance().checkForBall().get());
-		SmartDashboard.putNumber("Current Position", currentPosition);
-		SmartDashboard.putNumber("Error", ShooterAim.getInstance().motor().getError());
+//		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().getPosition());	
+//		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().getOutputVoltage());
+//		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().getForwardLimit());
+//		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().getBackLimit());
+//		SmartDashboard.putBoolean("Ball Engagement", Shooter.getInstance().checkForBall().get());
+//		SmartDashboard.putNumber("Current Position", currentPosition);
+//		SmartDashboard.putNumber("Error", ShooterAim.getInstance().motor().getError());
 	}
     
     /**

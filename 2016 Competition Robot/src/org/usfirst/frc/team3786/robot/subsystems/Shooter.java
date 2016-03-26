@@ -85,6 +85,6 @@ public class Shooter extends Subsystem{
 		
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new StopShooter());
+		setDefaultCommand(new StopShooter());
 	}
 }

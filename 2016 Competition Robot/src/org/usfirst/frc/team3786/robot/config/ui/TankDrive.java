@@ -25,6 +25,7 @@ public class TankDrive extends UIConfig{
 	
 	private static final int INTAKE_POSITION_BUTTON = 4;
 	private static final int SHOOT_POSITION_BUTTON= 6;
+	private static final int TRAVEL_POSITION_BUTTON = 2;
 	
 	private static final double AIM_INCREMENT = -.05;
 	//******************END******************
@@ -41,12 +42,13 @@ public class TankDrive extends UIConfig{
 	
 	private JoystickButton intakePositionButton;
 	private JoystickButton shootPositionButton;
+	private JoystickButton travelPositionButton;
 	
 	private JoystickButton stopShooterButton;
 	
 	private static double leftOut, rightOut;
 	
-	private static final double reductionFactor = 0.85;
+	//private static final double reductionFactor = 0.85;
 	
 	public TankDrive() {
 		leftStick = new Joystick(0);
@@ -61,6 +63,7 @@ public class TankDrive extends UIConfig{
 		
 		intakePositionButton = new JoystickButton(rightStick, INTAKE_POSITION_BUTTON);
 		shootPositionButton = new JoystickButton(rightStick, SHOOT_POSITION_BUTTON);
+		travelPositionButton = new JoystickButton(leftStick, TRAVEL_POSITION_BUTTON);
 		
 		stopShooterButton = new JoystickButton(leftStick, STOP_SHOOTER_BUTTON);
 	}
@@ -121,12 +124,17 @@ public class TankDrive extends UIConfig{
 	public Button shootPositionButton() {
 		return  shootPositionButton;
 	}
+
+	@Override
+	public Button travelPositionButton() {
+		return travelPositionButton;
+	}
 	
 	@Override
 	public Button stopShooterButton() {
 		return stopShooterButton;
 	}
-	
+		
 	@Override
 	public double getAIM_INCREMENT() {
 		return AIM_INCREMENT;

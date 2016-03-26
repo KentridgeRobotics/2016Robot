@@ -1,13 +1,12 @@
 package org.usfirst.frc.team3786.robot.commands.shooting;
 
 import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
-import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShootBall extends Command{
+public class ReleaseBall extends Command{
 	
-	public ShootBall() {
+	public ReleaseBall() {
 		requires(ReleaseMechanism.getInstance());
 	}
 	
