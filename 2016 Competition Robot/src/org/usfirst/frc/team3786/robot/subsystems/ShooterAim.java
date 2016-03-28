@@ -2,6 +2,7 @@ package org.usfirst.frc.team3786.robot.subsystems;
 
 import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
+import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -55,10 +56,11 @@ public class ShooterAim extends Subsystem{
 	}
 	
 	/**
-	 * Move the shooter to the user defined UP position
+	 * Move the shooter up
 	 */
-	public void upPosition() {
-		setPosition(UP_POS);
+	public void moveUp() {
+		aimMotor.setP(RobotConfig.getInstance().getSHOOTER_P_UP());
+		setPosition(getCurrentPosition() - UIConfig.getInstance().getAIM_INCREMENT());
 	}
 	
 	/**
@@ -69,10 +71,11 @@ public class ShooterAim extends Subsystem{
 	}
 	
 	/**
-	 * Move the shooter to the user defined intake position
+	 * Move the shooter down
 	 */
-	public void intakePosition() {
-		setPosition(DOWN_POS);
+	public void moveDown() {
+		aimMotor.setP(RobotConfig.getInstance().getSHOOTER_P_DOWN());
+		setPosition(getCurrentPosition() + UIConfig.getInstance().getAIM_INCREMENT());
 	}
 	
 	/**

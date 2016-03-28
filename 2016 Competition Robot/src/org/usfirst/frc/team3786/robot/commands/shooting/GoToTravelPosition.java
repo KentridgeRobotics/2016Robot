@@ -14,21 +14,21 @@ public class GoToTravelPosition extends Command {
 	}
 
 	protected void execute() {
-		ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - .1);
+		ShooterAim.getInstance().moveUp();
 	}
 
 	protected boolean isFinished() {
-		return !ShooterAim.getInstance().motor().getReverseLimitOK();
+		return !ShooterAim.getInstance().motor().getForwardLimitOK();
 	}
 
+	@Override
 	protected void end() {
-		// TODO Auto-generated method stub
-
+		ShooterAim.getInstance().retainCurrentPosition();
 	}
 
+	@Override
 	protected void interrupted() {
-		// TODO Auto-generated method stub
-
+		ShooterAim.getInstance().retainCurrentPosition();
 	}
 
 }

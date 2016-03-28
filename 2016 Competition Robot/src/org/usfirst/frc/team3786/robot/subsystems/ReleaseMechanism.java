@@ -17,6 +17,7 @@ public class ReleaseMechanism extends Subsystem{
 	private Servo[] releaseServo = new Servo[2];
 	private static ReleaseMechanism instance;
 	
+	private int x = 60, y = 180;
 	
 	public ReleaseMechanism() {
 		releaseServo[0] = new Servo(RobotConfig.getInstance().releaseServoLeft());
@@ -36,7 +37,7 @@ public class ReleaseMechanism extends Subsystem{
 	 */
 	public void retract() {
 		releaseServo[0].set(0);
-		releaseServo[1].set(180);
+		releaseServo[1].set(1);
 		isExtended = false;
 	}
 	
@@ -44,8 +45,8 @@ public class ReleaseMechanism extends Subsystem{
 	 * Extend the release mechanism
 	 */
 	public void extend() {
-		releaseServo[0].set(20);
-		releaseServo[1].set(0);
+		releaseServo[0].set(.5);
+		releaseServo[1].set(.5);
 		isExtended = true;
 	}
 	
@@ -58,6 +59,6 @@ public class ReleaseMechanism extends Subsystem{
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new StopShooter());
+		//setDefaultCommand(new StopShooter());
 	}
 }

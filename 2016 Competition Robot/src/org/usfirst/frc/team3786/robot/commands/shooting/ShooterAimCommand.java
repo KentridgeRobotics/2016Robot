@@ -23,12 +23,10 @@ public class ShooterAimCommand extends Command{
 	protected void execute() {
 		switch(currentMode) {
 			case UP:
-				ShooterAim.getInstance().motor().setP(800);
-				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() + UIConfig.getInstance().getAIM_INCREMENT());
+				ShooterAim.getInstance().moveUp();
 				break;
 			case DOWN:
-				ShooterAim.getInstance().motor().setP(400);
-				ShooterAim.getInstance().setPosition(ShooterAim.getInstance().getPosition() - UIConfig.getInstance().getAIM_INCREMENT());
+				ShooterAim.getInstance().moveDown();
 				break;
 			case RETAIN_POSITION:
 				ShooterAim.getInstance().retainCurrentPosition();

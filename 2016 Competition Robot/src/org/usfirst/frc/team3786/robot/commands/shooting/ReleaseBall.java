@@ -8,6 +8,7 @@ public class ReleaseBall extends Command{
 	
 	public ReleaseBall() {
 		requires(ReleaseMechanism.getInstance());
+		System.out.println("Release Ball Initialized");
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ public class VisionData {
 	private NetworkTable table;
 	
 	private double[] defaultValue = new double[0];
-	private double[] centerX, centerY, area, height, width;
+	private double[] centerX, centerY, areas, height, width;
 	
 	public VisionData(String address) {
 		table = NetworkTable.getTable(address);
@@ -19,8 +19,28 @@ public class VisionData {
 	public void updateValues() {
 		centerX = table.getNumberArray("centerX", defaultValue);
 		centerY = table.getNumberArray("centerY", defaultValue);
-		area = table.getNumberArray("area", defaultValue);
+		areas = table.getNumberArray("area", defaultValue);
 		height = table.getNumberArray("height", defaultValue);
 		width = table.getNumberArray("width", defaultValue);
+	}
+	
+	public double[] getCenterX() {
+		return centerX;
+	}
+	
+	public double[] getCenterY() {
+		return centerY;
+	}
+	
+	public double[] getAreas() {
+		return areas;
+	}
+	
+	public double[] getHeight() {
+		return height;
+	}
+	
+	public double[] getWidth() {
+		return width;
 	}
 }

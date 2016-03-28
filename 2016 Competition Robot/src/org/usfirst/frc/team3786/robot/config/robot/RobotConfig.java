@@ -28,6 +28,13 @@ public abstract class RobotConfig {
 	public abstract double getSHOOTER_I();
 	public abstract double getSHOOTER_D();
 	
+	public abstract double getSHOOTER_P_UP();
+	public abstract double getSHOOTER_I_UP();
+	public abstract double getSHOOTER_D_UP();
+	
+	public abstract double getSHOOTER_P_DOWN();
+	public abstract double getSHOOTER_I_DOWN();
+	public abstract double getSHOOTER_D_DOWN();
 	
 	//************Motor Channels and IDS************
 	

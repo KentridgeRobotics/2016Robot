@@ -8,10 +8,12 @@ public class SpinToShootSpeed extends Command {
 	
 	public SpinToShootSpeed() {
 		requires(Shooter.getInstance());
+		System.out.println("Shoot Command initiliazed");
 	}
 	
 	protected void initialize() {
 		Shooter.getInstance().spinToShootSpeed();
+		System.out.println("TRYING TO SHOOT");
 	}
 
 	protected void execute() {
