@@ -5,6 +5,7 @@ import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -23,8 +24,11 @@ public class ShooterAim extends Subsystem{
 	
 	private static double currentPosition;
 	
+	private static DigitalInput aimSwitch;
+	
 	private ShooterAim() {
-				
+		aimSwitch = new DigitalInput(5);
+		
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
 		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
@@ -60,6 +64,7 @@ public class ShooterAim extends Subsystem{
 	 */
 	public void moveUp() {
 		aimMotor.setP(RobotConfig.getInstance().getSHOOTER_P_UP());
+		aimMotor.setD(RobotConfig.getInstance().getSHOOTER_D_UP());
 		setPosition(getCurrentPosition() - UIConfig.getInstance().getAIM_INCREMENT());
 	}
 	
@@ -75,6 +80,7 @@ public class ShooterAim extends Subsystem{
 	 */
 	public void moveDown() {
 		aimMotor.setP(RobotConfig.getInstance().getSHOOTER_P_DOWN());
+		aimMotor.setD(RobotConfig.getInstance().getSHOOTER_D_DOWN());
 		setPosition(getCurrentPosition() + UIConfig.getInstance().getAIM_INCREMENT());
 	}
 	
@@ -107,6 +113,10 @@ public class ShooterAim extends Subsystem{
 	
 	public double getOutputVoltage() {
 		return aimMotor.getOutputVoltage();
+	}
+	
+	public boolean atShootPosition() {
+		return !aimSwitch.get();
 	}
 	
 	@Override

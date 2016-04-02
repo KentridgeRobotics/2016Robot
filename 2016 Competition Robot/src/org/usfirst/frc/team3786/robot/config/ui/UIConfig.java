@@ -12,8 +12,10 @@ public abstract class UIConfig {
 	private static UIConfig instance;
 		
 	public static UIConfig getInstance() {
-		if(instance == null)
-			instance = new TankDrive();
+		if(instance == null){
+			//instance = new TankDrive();
+			instance = new TankDriveWithShooterControlBox();
+		}
 		return instance;
 	}
 	

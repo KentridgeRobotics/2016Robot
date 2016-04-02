@@ -12,20 +12,16 @@ public class GoToShootPositionCommand extends Command{
 	
 	@Override
 	protected void initialize() {
-		ShooterAim.getInstance();
-		ShooterAim.getInstance().shootPosition();
 	}
 
 	@Override
 	protected void execute() {
+		ShooterAim.getInstance().moveDown();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		if(ShooterAim.getInstance().getPosition() == ShooterAim.SHOOT_POS)
-			return true;
-		else
-			return false;
+		return ShooterAim.getInstance().atShootPosition();
 	}
 
 	@Override

@@ -1,12 +1,18 @@
 
 package org.usfirst.frc.team3786.robot;
 
+import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 //import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
+
+
 
 //import org.usfirst.frc.team3786.robot.commands.auto.AutonomousDriveCommand;
 import org.usfirst.frc.team3786.robot.commands.auto.DoNothing;
@@ -45,6 +51,8 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     
+    private CameraServer camera;
+    
 //    Instantiating Commands that deal with the Shooter
 	private ShooterAimCommand aimUpCommand;
 	private ShooterAimCommand aimDownCommand;
@@ -64,7 +72,7 @@ public class Robot extends IterativeRobot {
 //	final Joystick mainStick = new Joystick(0);
 //	final JoystickButton triggerButton = new JoystickButton(mainStick, 1);
 //	final JoystickButton loadButton = new JoystickButton(mainStick, 2);
-    
+//    private DigitalInput aimSwitch;
 	private final String[] splash = {
 			" __   __  __   __  ______   _______  ______    _______  _______ ",
 			"|  |_|  ||  | |  ||      | |       ||    _ |  |   _   ||  _    |",
@@ -94,6 +102,10 @@ public class Robot extends IterativeRobot {
     	Shooter.getInstance();
     	ShooterAim.getInstance();
     	
+    	camera = CameraServer.getInstance();
+    	camera.setQuality(50);
+    	camera.startAutomaticCapture("cam0");
+    	    	
     	aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
     	aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
     	intakeBall = new IntakeBall();
@@ -135,7 +147,7 @@ public class Robot extends IterativeRobot {
         Scheduler.getInstance().add(drive);
         
         SmartDashboard.putData(Scheduler.getInstance());
-        
+        Timer.delay(.005);
         for(String s : splash) 
         	System.out.println(s);
         

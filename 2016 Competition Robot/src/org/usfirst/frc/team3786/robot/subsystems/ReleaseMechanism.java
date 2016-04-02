@@ -16,9 +16,7 @@ public class ReleaseMechanism extends Subsystem{
 	
 	private Servo[] releaseServo = new Servo[2];
 	private static ReleaseMechanism instance;
-	
-	private int x = 60, y = 180;
-	
+		
 	public ReleaseMechanism() {
 		releaseServo[0] = new Servo(RobotConfig.getInstance().releaseServoLeft());
 		releaseServo[1] = new Servo(RobotConfig.getInstance().releaseServoRight());

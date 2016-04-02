@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3786.robot.commands.shooting;
 
-import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;

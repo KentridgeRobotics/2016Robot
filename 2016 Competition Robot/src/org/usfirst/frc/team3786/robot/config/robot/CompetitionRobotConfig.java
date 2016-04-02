@@ -35,14 +35,14 @@ public class CompetitionRobotConfig extends RobotConfig{
 	private static final double SHOOTER_I_DEF = 0;
 	private static final double SHOOTER_D_DEF = 150;
 	
-	private static final double SHOOTER_P_UP = 800;
+	private static final double SHOOTER_P_UP = 900;
 	private static final double SHOOTER_P_DOWN = 700;
 	
 	private static final double SHOOTER_I_UP = 0;
 	private static final double SHOOTER_I_DOWN = 0;
 	
-	private static final double SHOOTER_D_UP = 0;
-	private static final double SHOOTER_D_DOWN = 0;
+	private static final double SHOOTER_D_UP = 450;
+	private static final double SHOOTER_D_DOWN = 350;
 	
 	//Lifter Mechanisms
 	private static final int LIFT_ONE = 0;
