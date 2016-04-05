@@ -48,6 +48,8 @@ public class CompetitionRobotConfig extends RobotConfig{
 	private static final int LIFT_ONE = 0;
 	private static final int LIFT_TWO = 0;
 	
+	private static final int NUM_CAM_SWITCHES = 0;
+	
 	//****************END****************
 	
 	@Override
@@ -178,5 +180,10 @@ public class CompetitionRobotConfig extends RobotConfig{
 	@Override
 	public double getSHOOTER_D_DOWN() {
 		return SHOOTER_D_DOWN;
+	}
+
+	@Override
+	public int numSwitches() {
+		return NUM_CAM_SWITCHES;
 	}	
 }

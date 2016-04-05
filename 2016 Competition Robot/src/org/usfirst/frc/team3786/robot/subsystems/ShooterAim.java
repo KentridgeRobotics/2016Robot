@@ -13,8 +13,12 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * @author Manpreet Singh 2016
  */
 public class ShooterAim extends Subsystem{
-
+		
 	private static ShooterAim instance;
+	
+	private static DigitalInput[] switches;
+	
+	private static int activeSwitch, currentSwitch;
 	
 	private CANJaguar aimMotor;
 	//**************POSITIONS**************
@@ -29,6 +33,8 @@ public class ShooterAim extends Subsystem{
 	private ShooterAim() {
 		aimSwitch = new DigitalInput(5);
 		
+		switches = new DigitalInput[RobotConfig.getInstance().numSwitches()];
+		
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
 		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
@@ -42,7 +48,30 @@ public class ShooterAim extends Subsystem{
 		aimMotor.enableControl();
 	}
 	
-			
+	public int getActiveSwitch() {
+		for(int i = 0; i < switches.length; i++) {
+			if(switches[i].get())
+				activeSwitch = i;
+			else continue;
+		}
+		return activeSwitch;
+	}
+	
+	public void goToSwitch(int desiredSwitch) {
+		if(desiredSwitch < 0)
+			return;
+		else {
+			if(desiredSwitch > currentSwitch)
+				move(0.0);
+			else if(desiredSwitch < currentSwitch)
+				move(0.0);
+		}
+	}
+	
+	public void move(double foo) {
+		aimMotor.set(foo);
+	}
+	
 	public static ShooterAim getInstance() {
 		if(instance == null)
 			instance = new ShooterAim();
@@ -121,6 +150,7 @@ public class ShooterAim extends Subsystem{
 	
 	@Override
 	protected void initDefaultCommand() {
-		setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
+		//This piece of code is VERY EVIL, It's sheared like 2 gear boxes, I left it here for shits and giggles
+		//setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
 	}
 }

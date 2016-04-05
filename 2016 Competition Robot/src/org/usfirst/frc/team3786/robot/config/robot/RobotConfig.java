@@ -35,7 +35,7 @@ public abstract class RobotConfig {
 	public abstract double getSHOOTER_P_DOWN();
 	public abstract double getSHOOTER_I_DOWN();
 	public abstract double getSHOOTER_D_DOWN();
-	
+		
 	//************Motor Channels and IDS************
 	
 	//------------Drive Motor IDs------------
@@ -61,5 +61,7 @@ public abstract class RobotConfig {
 	//-------------Lift Mechanism-------------
 	public abstract int getLiftOneChan();
 	public abstract int getLifttwoChan();
+	
+	public abstract int numSwitches();
 	
 }
