@@ -8,6 +8,11 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+/**
+ * Made up never used subsystem to control the entire shooter
+ * This might've been a better way to code the shooter
+ * @author Nate Chapman and Manpreet Singh 2016
+ */
 public class NewShooter extends Subsystem {
 		
 	/* These are our sensors and actuators */

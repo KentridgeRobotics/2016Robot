@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3786.robot.config.robot;
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * The RobotConfig is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
@@ -9,6 +9,7 @@ public abstract class RobotConfig {
 	
 	private static RobotConfig instance;
 	
+	// Point this to the config file you want to use
 	public static RobotConfig getInstance() {
 		if(instance == null)
 			instance = new CompetitionRobotConfig();
@@ -20,8 +21,6 @@ public abstract class RobotConfig {
 	public abstract double getDRIVE_I();
 	public abstract double getDRIVE_D();
 	public abstract int getCODES_PER_REV();
-	public abstract int[] leftEncoderChan();
-	public abstract int[] rightEncoderChan();
 	
 	//************Shooter AIM PID Values************
 	public abstract double getSHOOTER_P();

@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This Class holds methods to control the shooter
+ * This Class holds methods to control the shooter wheels
  * @author Manpreet Singh 2016
  */
 public class Shooter extends Subsystem{

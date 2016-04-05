@@ -13,17 +13,13 @@ public class CompetitionRobotConfig extends RobotConfig{
 	private static final double DRIVE_D = 0;
 	private static final int ENCODER_CODES_PER_REVOLUTION = 180;
 	
-	//DIO Channels
-	private static final int[] LEFT_ENCODER_CHANS = {0,1}; //{A CHANNEL, B CHANNEL}
-	private static final int[] RIGHT_ENCODER_CHANS = {2,3};//{A CHANNEL, B CHANNEL}
-	
 	//Shooter Mechanisms
 	private static final int SHOOTER_FLY_WHEEL = 2;
 	
 	private static final int RELEASE_MECH_LEFT = 3;
 	private static final int RELEASE_MECH_RIGHT = 4;
 	
-	private static final int BALL_ENGAGEMENT = 4;
+	private static final int BALL_ENGAGEMENT = 0;
 	
 	private static final int ELEVATION_MOTOR = 18;
 	
@@ -84,17 +80,7 @@ public class CompetitionRobotConfig extends RobotConfig{
 	public int getCODES_PER_REV() {
 		return ENCODER_CODES_PER_REVOLUTION;
 	}
-	
-	@Override
-	public int[] leftEncoderChan() {
-		return LEFT_ENCODER_CHANS;
-	}
-	
-	@Override
-	public int[] rightEncoderChan() {
-		return RIGHT_ENCODER_CHANS;
-	}
-	
+		
 	@Override
 	public int getLeftDriveMotor() {
 		return LEFT_DRIVE_MOTOR;

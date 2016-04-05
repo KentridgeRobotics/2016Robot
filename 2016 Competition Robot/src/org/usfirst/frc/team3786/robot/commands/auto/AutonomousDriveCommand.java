@@ -6,12 +6,15 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class AutonomousDriveCommand extends Command{
 	
-	private final double leftTurnSpeed = .2;
-	private final double rightTurnSpeed = .2;
+	private static final double DEFAULT_DRIVE_SPEED = 0.75;
+	private static final double DEFAULT_TURN_SPEED = 0.2;
 	
-	private final double leftDriveSpeed = .8;
-	private final double rightDriveSpeed = -.8;
+	private double leftTurnSpeed;
+	private double rightTurnSpeed;
 	
+	private double leftDriveSpeed;
+	private double rightDriveSpeed;
+		
 	public enum Direction { Forwards, Backwards , Left, Right}
 	
 	private Direction desiredDirection;
@@ -19,7 +22,37 @@ public class AutonomousDriveCommand extends Command{
 	public AutonomousDriveCommand(Direction direction) {
 		 this.desiredDirection = direction;
 		 
+		 this.leftDriveSpeed = DEFAULT_DRIVE_SPEED;
+		 this.rightDriveSpeed = -DEFAULT_DRIVE_SPEED;
+		 
+		 this.leftTurnSpeed = DEFAULT_TURN_SPEED;
+		 this.rightTurnSpeed = -DEFAULT_TURN_SPEED;
+		 
 		 requires(DriveTrain.getInstance());
+	}
+	
+	public AutonomousDriveCommand(Direction direction, double driveSpeed) {
+		this.desiredDirection = direction;
+		
+		this.leftDriveSpeed = driveSpeed;
+		this.rightDriveSpeed = -driveSpeed;
+		
+		this.leftTurnSpeed = DEFAULT_TURN_SPEED;
+		this.rightTurnSpeed = -DEFAULT_TURN_SPEED;
+		
+		requires(DriveTrain.getInstance());
+	}
+	
+	public AutonomousDriveCommand(Direction direction, double driveSpeed, double turnSpeed) {
+		this.desiredDirection = direction;
+		
+		this.leftDriveSpeed = driveSpeed;
+		this.rightDriveSpeed = -driveSpeed;
+		
+		this.leftTurnSpeed = turnSpeed;
+		this.rightTurnSpeed = -turnSpeed;
+		
+		requires(DriveTrain.getInstance());
 	}
 	
 	@Override
@@ -58,5 +91,5 @@ public class AutonomousDriveCommand extends Command{
 	protected void interrupted() {
 		end();
 	}
-
+	
 }

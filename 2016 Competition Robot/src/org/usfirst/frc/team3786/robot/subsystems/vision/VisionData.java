@@ -2,6 +2,15 @@ package org.usfirst.frc.team3786.robot.subsystems.vision;
 
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
+/**
+ * The Class to get Vision data from the Raspberry Pi
+ * and make it available to the roboRio
+ * <p>
+ * <h1>Note:</h1> 
+ * <p>
+ * This was never used, but it might still work in the future
+ * @author Manpreet Singh 2016
+ */
 public class VisionData {
 	
 	private NetworkTable table;

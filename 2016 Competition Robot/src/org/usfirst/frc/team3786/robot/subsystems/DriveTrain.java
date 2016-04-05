@@ -18,14 +18,7 @@ public class DriveTrain extends Subsystem {
 	
 	private Jaguar leftMotor, rightMotor;
 	
-	private Encoder leftEncoder, rightEncoder;
-	
 	public DriveTrain() {
-		leftEncoder = new Encoder(RobotConfig.getInstance().leftEncoderChan()[0], 
-				RobotConfig.getInstance().leftEncoderChan()[1]);
-		
-		rightEncoder = new Encoder(RobotConfig.getInstance().rightEncoderChan()[0],
-				RobotConfig.getInstance().rightEncoderChan()[1]);
 		
 		leftMotor = new Jaguar(RobotConfig.getInstance().getLeftDriveMotor());
 		
@@ -43,21 +36,7 @@ public class DriveTrain extends Subsystem {
 		leftMotor.set(left_speed);
 		rightMotor.set(right_speed);
 	}
-	
-	/**
-	 * Get distance traveled by the left side of robot
-	 */
-	public double getLeftDistance() {
-		return leftEncoder.getDistance();
-	}
-	
-	/**
-	 * Get distance traveled by the right side of robot
-	 */
-	public double getRightDistance() {
-		return rightEncoder.getDistance();
-	}
-	
+		
 	/**
 	 * Stop the robot
 	 */

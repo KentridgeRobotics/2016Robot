@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 //import org.usfirst.frc.team3786.robot.commands.auto.AutonomousDriveCommand;
 import org.usfirst.frc.team3786.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team3786.robot.commands.auto.DriveForwards;
+import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
 //import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
 //import org.usfirst.frc.team3786.robot.commands.auto.ShootAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
@@ -68,11 +69,8 @@ public class Robot extends IterativeRobot {
 	
 	final DriveForwards driveForward = new DriveForwards();
 	final DoNothing doNothing = new DoNothing();
-//	For Testing purposes only
-//	final Joystick mainStick = new Joystick(0);
-//	final JoystickButton triggerButton = new JoystickButton(mainStick, 1);
-//	final JoystickButton loadButton = new JoystickButton(mainStick, 2);
-//    private DigitalInput aimSwitch;
+	final LowBarAutonomousCommandGroup lowBarAuto = new LowBarAutonomousCommandGroup();
+	
 	private final String[] splash = {
 			" __   __  __   __  ______   _______  ______    _______  _______ ",
 			"|  |_|  ||  | |  ||      | |       ||    _ |  |   _   ||  _    |",
@@ -115,12 +113,7 @@ public class Robot extends IterativeRobot {
     	goToTravelPosition = new GoToTravelPosition();
     	stopShooter = new StopShooter();
     	spinToShootSpeed = new SpinToShootSpeed();
-    	
-    	//Binding Commands that deal with the New Shooter class
-//    	NewShooter.getInstance();
-//    	triggerButton.whileHeld(NewShooter.getInstance().triggerButton);
-//    	loadButton.whileHeld(NewShooter.getInstance().loadButton);
-    	        
+    	    	        
         UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
         UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
@@ -139,8 +132,9 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
         chooser = new SendableChooser();
-        chooser.addDefault("Drive", driveForward);
         chooser.addDefault("Do Nothing", doNothing);
+        chooser.addDefault("Drive", driveForward);
+        chooser.addDefault("Low Bar Auto", lowBarAuto);
         
         SmartDashboard.putData("Select Autonomous", chooser);
         
@@ -178,19 +172,8 @@ public class Robot extends IterativeRobot {
 	 */
     public void autonomousInit() {
         autonomousCommand = (Command) chooser.getSelected();
-        
-		/* String autoSelected = SmartDashboard.getString("Auto Selector", "Default");
-		switch(autoSelected) {
-		case "My Auto":
-			autonomousCommand = new MyAutoCommand();
-			break;
-		case "Default Auto":
-		default:
-			autonomousCommand = new ExampleCommand();
-			break;
-		} */
     	
-    	// schedule the autonomous command (example)
+    	// schedule the autonomous command 
         if (autonomousCommand != null) autonomousCommand.start();
     }
 

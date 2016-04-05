@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * This Class holds methods to aim the shooter
+ * The Class that holds methods to aim the shooter
  * @author Manpreet Singh 2016
  */
 public class ShooterAim extends Subsystem{
@@ -17,6 +17,7 @@ public class ShooterAim extends Subsystem{
 	private static ShooterAim instance;
 	
 	private CANJaguar aimMotor;
+	
 	//**************POSITIONS**************
 	public static final double DOWN_POS = 0.5;
 	public static final double UP_POS = 0.0;
@@ -48,6 +49,7 @@ public class ShooterAim extends Subsystem{
 			instance = new ShooterAim();
 		return instance;
 	}
+	
 	public CANJaguar motor() {
 		return aimMotor;
 	}
@@ -85,7 +87,10 @@ public class ShooterAim extends Subsystem{
 	}
 	
 	/**
-	 * Tells Shooter to retain current position/angle
+	 * <h1>Tells Shooter to retain current position/angle</h1>
+	 * <p>
+	 * This method of retaining position will only work if the encoder
+	 * reading values properly and return them on the controller
 	 */
 	public void retainCurrentPosition() {
 		aimMotor.set(currentPosition);
