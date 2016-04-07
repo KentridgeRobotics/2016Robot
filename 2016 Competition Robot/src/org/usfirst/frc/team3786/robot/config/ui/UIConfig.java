@@ -14,7 +14,8 @@ public abstract class UIConfig {
 	public static UIConfig getInstance() {
 		if(instance == null){
 			//instance = new TankDrive();
-			instance = new TankDriveWithShooterControlBox();
+			//instance = new TankDriveWithShooterControlBox();
+			instance = new TankDriveWithXboxController();
 		}
 		return instance;
 	}
@@ -33,6 +34,9 @@ public abstract class UIConfig {
 	public abstract Button intakeBallButton();
 	
 	public abstract Button spinToShooterSpeed();
+	
+	public abstract double getShootSpeed();
+	public abstract double getIntakeSpeed();
 	
 	//Buttons to Aim the Shooter
 	public abstract Button aimUpButton();

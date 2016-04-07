@@ -149,5 +149,17 @@ public class TankDrive extends UIConfig{
 	public Button pullHookButton() {
 		return (new JoystickButton(leftStick, PULL_HOOK));
 	}
+
+	@Override
+	public double getShootSpeed() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getIntakeSpeed() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 

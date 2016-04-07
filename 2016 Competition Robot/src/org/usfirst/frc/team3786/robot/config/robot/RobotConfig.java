@@ -57,8 +57,5 @@ public abstract class RobotConfig {
 	public abstract int elevatationUpperLimitID();
 	public abstract int elevatationBottomLimitID();
 	
-	//-------------Lift Mechanism-------------
-	public abstract int getLiftOneChan();
-	public abstract int getLifttwoChan();
 	
 }

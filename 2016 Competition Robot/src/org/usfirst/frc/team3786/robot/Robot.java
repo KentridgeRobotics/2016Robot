@@ -27,6 +27,7 @@ import org.usfirst.frc.team3786.robot.commands.shooting.GoToTravelPosition;
 import org.usfirst.frc.team3786.robot.commands.shooting.IntakeBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ReleaseBall;
 import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
+import org.usfirst.frc.team3786.robot.commands.shooting.ShooterCommand;
 import org.usfirst.frc.team3786.robot.commands.shooting.SpinToShootSpeed;
 import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
@@ -54,7 +55,7 @@ public class Robot extends IterativeRobot {
     
     private CameraServer camera;
     
-//    Instantiating Commands that deal with the Shooter
+//  Instantiating Commands that deal with the Shooter
 	private ShooterAimCommand aimUpCommand;
 	private ShooterAimCommand aimDownCommand;
 	private IntakeBall intakeBall;
@@ -64,6 +65,10 @@ public class Robot extends IterativeRobot {
 	private GoToTravelPosition goToTravelPosition;
 	private StopShooter stopShooter;
 	private SpinToShootSpeed spinToShootSpeed;
+	
+	private ShooterCommand shootCommand;
+	private ShooterCommand intakeCommand;
+	
 //	Instantiating Commands that deal with the Drive Train
 	final Drive drive = new Drive();
 	
@@ -106,25 +111,27 @@ public class Robot extends IterativeRobot {
     	    	
     	aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
     	aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
-    	intakeBall = new IntakeBall();
+//    	intakeBall = new IntakeBall();
     	releaseBall = new ReleaseBall();
     	goToIntakePosition = new GoToIntakePositionCommand();
     	goToShootPosition = new GoToShootPositionCommand();
     	goToTravelPosition = new GoToTravelPosition();
-    	stopShooter = new StopShooter();
-    	spinToShootSpeed = new SpinToShootSpeed();
-    	    	        
+//    	stopShooter = new StopShooter();
+//    	spinToShootSpeed = new SpinToShootSpeed();
+    	
+    	shootCommand = new ShooterCommand();
+    	
         UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
         UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
         UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
         UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         UIConfig.getInstance().travelPositionButton().whenPressed(goToTravelPosition);
        
-        UIConfig.getInstance().shootBallButton().whenPressed(releaseBall);
-        UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
+//        UIConfig.getInstance().shootBallButton().whenPressed(releaseBall);
+//        UIConfig.getInstance().intakeBallButton().whenPressed(intakeBall);
         
-        UIConfig.getInstance().spinToShooterSpeed().whenPressed(spinToShootSpeed);
-        UIConfig.getInstance().stopShooterButton().whenPressed(stopShooter);
+//        UIConfig.getInstance().spinToShooterSpeed().whenPressed(spinToShootSpeed);
+//        UIConfig.getInstance().stopShooterButton().whenPressed(stopShooter);
         
         SmartDashboard.putData("Shoot Ball Command", releaseBall);
         SmartDashboard.putData("Intake Ball Command", intakeBall);
@@ -139,9 +146,12 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putData("Select Autonomous", chooser);
         
         Scheduler.getInstance().add(drive);
+        Scheduler.getInstance().add(shootCommand);
         
         SmartDashboard.putData(Scheduler.getInstance());
+        
         Timer.delay(.005);
+        
         for(String s : splash) 
         	System.out.println(s);
         
@@ -194,7 +204,6 @@ public class Robot extends IterativeRobot {
     /**
      * This function is called periodically during operator control
      */
-    double currentPosition;
     public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
@@ -203,7 +212,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().getForwardLimit());
 		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().getBackLimit());
 		SmartDashboard.putBoolean("Ball Engagement", Shooter.getInstance().checkForBall().get());
-		SmartDashboard.putNumber("Current Position", currentPosition);
 		SmartDashboard.putNumber("Error", ShooterAim.getInstance().motor().getError());
 	}
     

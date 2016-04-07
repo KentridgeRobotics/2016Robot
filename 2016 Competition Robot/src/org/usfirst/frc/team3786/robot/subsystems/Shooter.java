@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3786.robot.subsystems;
 
-import org.usfirst.frc.team3786.robot.commands.shooting.StopShooter;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -31,6 +30,10 @@ public class Shooter extends Subsystem{
 		if(instance == null)
 			instance = new Shooter();
 		return instance;
+	}
+	
+	public void setSpeed(double speed) {
+		shooterWheels.set(speed);
 	}
 	
 	/**

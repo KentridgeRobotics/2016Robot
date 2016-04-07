@@ -5,6 +5,11 @@ import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This Command tells the shooter wheels to spin inwards to Intake
+ * @author Manpreet Singh 2016
+ *
+ */
 public class IntakeBall extends Command{
 	
 	public IntakeBall() {

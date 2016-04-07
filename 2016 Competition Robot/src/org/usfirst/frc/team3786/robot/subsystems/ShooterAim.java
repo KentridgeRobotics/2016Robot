@@ -21,7 +21,7 @@ public class ShooterAim extends Subsystem{
 	//**************POSITIONS**************
 	public static final double DOWN_POS = 0.5;
 	public static final double UP_POS = 0.0;
-	public static final double SHOOT_POS = 0.3;
+	public static final double SHOOT_POS = 0.2;
 	
 	private static double currentPosition;
 	
@@ -32,8 +32,7 @@ public class ShooterAim extends Subsystem{
 		
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
-		aimMotor.setPositionMode(CANJaguar.kQuadEncoder, 
-				RobotConfig.getInstance().getCODES_PER_REV(), 
+		aimMotor.setPositionMode(CANJaguar.kPotentiometer,  
 				RobotConfig.getInstance().getSHOOTER_P(), 
 				RobotConfig.getInstance().getSHOOTER_I(), 
 				RobotConfig.getInstance().getSHOOTER_D());
@@ -126,6 +125,7 @@ public class ShooterAim extends Subsystem{
 	
 	@Override
 	protected void initDefaultCommand() {
+		//This line of code is EVIL, it's sheared like 2 sets of gearbox pins, I'm gonna leave it here for shits and giggles
 		//setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
 	}
 }

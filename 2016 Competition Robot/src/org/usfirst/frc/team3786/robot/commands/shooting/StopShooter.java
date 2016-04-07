@@ -5,6 +5,11 @@ import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This Command is meant to interrupt the SpinToShootSpeed, ReleaseBall, and Intake Commands.
+ * Ergo, it stops those commands from running
+ * @author Manpreet Singh 2016
+ */
 public class StopShooter extends Command {
 	
 	public StopShooter() {

@@ -4,6 +4,11 @@ import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This Command/Class handles moving the shooter up, down, and holding position.
+ * @author Manpreet Singh 2016
+ *
+ */
 public class ShooterAimCommand extends Command{
 	
 	public enum Mode { UP, DOWN, RETAIN_POSITION }

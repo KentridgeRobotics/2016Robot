@@ -4,6 +4,10 @@ import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * This Command tells the shooter wheels to spin to shooting speed.
+ * @author Manpreet Singh 2016
+ */
 public class SpinToShootSpeed extends Command {
 	
 	public SpinToShootSpeed() {

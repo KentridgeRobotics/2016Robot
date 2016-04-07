@@ -27,23 +27,19 @@ public class CompetitionRobotConfig extends RobotConfig{
 	private static final int ELEVATION_LIMIT_BOTTOM = 0;
 	
 	//Shooter PID
-	private static final double SHOOTER_P_DEF = 400;
+	private static final double SHOOTER_P_DEF = 600;
 	private static final double SHOOTER_I_DEF = 0;
 	private static final double SHOOTER_D_DEF = 150;
 	
-	private static final double SHOOTER_P_UP = 900;
-	private static final double SHOOTER_P_DOWN = 700;
+	private static final double SHOOTER_P_UP = 600;
+	private static final double SHOOTER_P_DOWN = 400;
 	
 	private static final double SHOOTER_I_UP = 0;
 	private static final double SHOOTER_I_DOWN = 0;
 	
-	private static final double SHOOTER_D_UP = 450;
-	private static final double SHOOTER_D_DOWN = 350;
-	
-	//Lifter Mechanisms
-	private static final int LIFT_ONE = 0;
-	private static final int LIFT_TWO = 0;
-	
+	private static final double SHOOTER_D_UP = SHOOTER_P_UP/4;
+	private static final double SHOOTER_D_DOWN = SHOOTER_P_DOWN/2;
+		
 	//****************END****************
 	
 	@Override
@@ -124,16 +120,6 @@ public class CompetitionRobotConfig extends RobotConfig{
 	@Override
 	public int elevatationBottomLimitID() {
 		return ELEVATION_LIMIT_BOTTOM;
-	}
-
-	@Override
-	public int getLiftOneChan() {
-		return LIFT_ONE;
-	}
-
-	@Override
-	public int getLifttwoChan() {
-		return LIFT_TWO;
 	}
 
 	@Override
