@@ -50,7 +50,4 @@ public abstract class UIConfig {
 	public abstract Button stopShooterButton();
 	
 	public abstract double getAIM_INCREMENT();
-	
-	public abstract Button extendHookButton();
-	public abstract Button pullHookButton();
 }

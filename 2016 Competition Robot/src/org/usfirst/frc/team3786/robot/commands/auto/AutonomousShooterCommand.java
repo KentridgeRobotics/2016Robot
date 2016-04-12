@@ -1,27 +1,26 @@
-package org.usfirst.frc.team3786.robot.commands.shooting;
+package org.usfirst.frc.team3786.robot.commands.auto;
 
 import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * This Command moves the shooter to Shoot position
- * @author Manpreet Singh 2016
- *
- */
-public class GoToShootPositionCommand extends Command{
+public class AutonomousShooterCommand extends Command{
 	
-	public GoToShootPositionCommand() {
+	private double position;
+	
+	public AutonomousShooterCommand(double position) {
+		this.position = position;
+		
 		requires(ShooterAim.getInstance());
 	}
 	
 	@Override
 	protected void initialize() {
+		ShooterAim.getInstance().setPosition(this.position);
 	}
 
 	@Override
 	protected void execute() {
-		ShooterAim.getInstance().moveDown();
 	}
 
 	@Override
@@ -31,11 +30,9 @@ public class GoToShootPositionCommand extends Command{
 
 	@Override
 	protected void end() {
-		ShooterAim.getInstance().retainCurrentPosition();
 	}
 
 	@Override
 	protected void interrupted() {
-		ShooterAim.getInstance().retainCurrentPosition();
 	}
 }

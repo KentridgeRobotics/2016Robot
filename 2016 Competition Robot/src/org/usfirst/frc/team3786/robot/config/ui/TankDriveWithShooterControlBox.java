@@ -138,16 +138,6 @@ public class TankDriveWithShooterControlBox extends UIConfig{
 	public double getAIM_INCREMENT() {
 		return AIM_INCREMENT;
 	}
-	
-	@Override
-	public Button extendHookButton() {
-		return extendHook;
-	}
-
-	@Override
-	public Button pullHookButton() {
-		return retractHook;
-	}
 
 	@Override
 	public double getShootSpeed() {

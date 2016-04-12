@@ -12,9 +12,7 @@ public class TankDriveWithXboxController extends UIConfig{
 	private static final int SHOOTER_AXIS = 0;
 	private static final int RELEASE_BALL_BUTTON = 0;
 	private static final int INTAKE_AXIS = 0;
-	
-	private static final int STOP_SHOOTER_BUTTON = 0;
-	
+		
 	private static final int AIM_UP_BUTTON = 0;
 	private static final int AIM_DOWN_BUTTON = 0;
 	
@@ -120,16 +118,6 @@ public class TankDriveWithXboxController extends UIConfig{
 	@Override
 	public double getAIM_INCREMENT() {
 		return AIM_INCREMENT;
-	}
-
-	@Override
-	public Button extendHookButton() {
-		return null;
-	}
-
-	@Override
-	public Button pullHookButton() {
-		return null;
 	}
 
 	@Override

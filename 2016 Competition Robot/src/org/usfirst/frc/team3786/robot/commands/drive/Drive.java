@@ -6,6 +6,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 
+/**
+ * <h1>Drive:</h1>
+ * <p>
+ * 
+ * This class handles the drive train during teleop
+ * 
+ * @author Manpreet Singh 2016
+ */
 public class Drive extends Command {
 
     public Drive() {

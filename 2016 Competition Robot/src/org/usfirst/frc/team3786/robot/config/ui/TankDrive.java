@@ -139,16 +139,6 @@ public class TankDrive extends UIConfig{
 	public double getAIM_INCREMENT() {
 		return AIM_INCREMENT;
 	}
-	
-	@Override
-	public Button extendHookButton() {
-		return (new JoystickButton(leftStick, EXTEND_HOOK));
-	}
-
-	@Override
-	public Button pullHookButton() {
-		return (new JoystickButton(leftStick, PULL_HOOK));
-	}
 
 	@Override
 	public double getShootSpeed() {

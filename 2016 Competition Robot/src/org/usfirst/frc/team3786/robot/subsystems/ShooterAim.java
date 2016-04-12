@@ -1,11 +1,9 @@
 package org.usfirst.frc.team3786.robot.subsystems;
 
-import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -24,11 +22,8 @@ public class ShooterAim extends Subsystem{
 	public static final double SHOOT_POS = 0.2;
 	
 	private static double currentPosition;
-	
-	private static DigitalInput aimSwitch;
-	
+		
 	private ShooterAim() {
-		aimSwitch = new DigitalInput(5);
 		
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
@@ -49,9 +44,14 @@ public class ShooterAim extends Subsystem{
 		return instance;
 	}
 	
+	/**
+	 * Aim Motor getter object for advanced access 
+	 * @return The Aim Motor object
+	 */
 	public CANJaguar motor() {
 		return aimMotor;
 	}
+	
 	/**
 	 * @param position The position we want the shooter to be
 	 */
@@ -118,11 +118,7 @@ public class ShooterAim extends Subsystem{
 	public double getOutputVoltage() {
 		return aimMotor.getOutputVoltage();
 	}
-	
-	public boolean atShootPosition() {
-		return !aimSwitch.get();
-	}
-	
+		
 	@Override
 	protected void initDefaultCommand() {
 		//This line of code is EVIL, it's sheared like 2 sets of gearbox pins, I'm gonna leave it here for shits and giggles

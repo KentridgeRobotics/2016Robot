@@ -22,6 +22,8 @@ public class ShooterCommand extends Command{
 			Shooter.getInstance().setSpeed(UIConfig.getInstance().getIntakeSpeed());
 		else if(UIConfig.getInstance().getShootSpeed() >= .05)
 			Shooter.getInstance().setSpeed(UIConfig.getInstance().getShootSpeed());
+		else
+			Shooter.getInstance().STOP();
 	}
 
 	@Override
@@ -31,11 +33,12 @@ public class ShooterCommand extends Command{
 
 	@Override
 	protected void end() {
-		
+		Shooter.getInstance().STOP();
 	}
 
 	@Override
-	protected void interrupted() {		
+	protected void interrupted() {
+		end();
 	}
 	
 }
