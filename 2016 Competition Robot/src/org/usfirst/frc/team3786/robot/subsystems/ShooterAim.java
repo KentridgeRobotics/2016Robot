@@ -88,8 +88,8 @@ public class ShooterAim extends Subsystem{
 	/**
 	 * <h1>Tells Shooter to retain current position/angle</h1>
 	 * <p>
-	 * This method of retaining position will only work if the encoder
-	 * reading values properly and return them on the controller
+	 * This method of retaining position will only work if the encoder is
+	 * reading values properly and returning them to the controller
 	 */
 	public void retainCurrentPosition() {
 		aimMotor.set(currentPosition);

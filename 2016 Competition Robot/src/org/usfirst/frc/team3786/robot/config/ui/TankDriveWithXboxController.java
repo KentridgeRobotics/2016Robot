@@ -9,16 +9,16 @@ public class TankDriveWithXboxController extends UIConfig{
 	
 	//*************Button Config*************
 	
-	private static final int SHOOTER_AXIS = 0;
-	private static final int RELEASE_BALL_BUTTON = 0;
-	private static final int INTAKE_AXIS = 0;
+	private static final int SHOOTER_AXIS = 3;
+	private static final int RELEASE_BALL_BUTTON = 6;
+	private static final int INTAKE_AXIS = 2;
 		
-	private static final int AIM_UP_BUTTON = 0;
-	private static final int AIM_DOWN_BUTTON = 0;
+	private static final int AIM_UP_BUTTON = 4;
+	private static final int AIM_DOWN_BUTTON = 1;
 	
-	private static final int INTAKE_POSITION_BUTTON = 0;
-	private static final int SHOOT_POSITION_BUTTON = 0;
-	private static final int TRAVEL_POSITION_BUTTON = 0;
+	private static final int INTAKE_POSITION_BUTTON = 2;
+	private static final int SHOOT_POSITION_BUTTON = 7;
+	private static final int TRAVEL_POSITION_BUTTON = 3;
 	
 	private static final double AIM_INCREMENT = -.005;
 	//******************END******************
@@ -37,6 +37,11 @@ public class TankDriveWithXboxController extends UIConfig{
 	private static double leftOut, rightOut;
 	
 	public TankDriveWithXboxController() {
+		
+		leftStick = new Joystick(0);
+		rightStick = new Joystick(1);
+		xbox = new Joystick(0);
+		
 		releaseBallButton = new JoystickButton(xbox, RELEASE_BALL_BUTTON);
 		
 		aimUpButton = new JoystickButton(xbox, AIM_UP_BUTTON);
@@ -72,7 +77,7 @@ public class TankDriveWithXboxController extends UIConfig{
 
 	@Override
 	public Button shootBallButton() {
-		return null;
+		return releaseBallButton;
 	}
 
 	@Override

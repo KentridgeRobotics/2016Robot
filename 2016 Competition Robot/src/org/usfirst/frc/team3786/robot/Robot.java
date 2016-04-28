@@ -12,8 +12,14 @@ import org.usfirst.frc.team3786.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team3786.robot.commands.auto.DriveForwards;
 import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
+import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
+import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
+import org.usfirst.frc.team3786.robot.commands.shooting.GoToTravelPosition;
+import org.usfirst.frc.team3786.robot.commands.shooting.ReleaseBall;
+import org.usfirst.frc.team3786.robot.commands.shooting.ShooterAimCommand;
+import org.usfirst.frc.team3786.robot.commands.shooting.ShooterCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
-import org.usfirst.frc.team3786.robot.config.util.Commands;
+import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 //import org.usfirst.frc.team3786.robot.subsystems.NewShooter;
 import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
@@ -35,8 +41,19 @@ public class Robot extends IterativeRobot {
     Command autonomousCommand;
     SendableChooser chooser;
     
-    private CameraServer camera;	
+    CameraServer camera;	
 	
+    ShooterAimCommand aimUpCommand;
+	ShooterAimCommand aimDownCommand;
+	
+	ReleaseBall releaseBall;
+	
+	GoToIntakePositionCommand goToIntakePosition;
+	GoToShootPositionCommand goToShootPosition;
+	GoToTravelPosition goToTravelPosition;
+	
+	ShooterCommand shooterCommand;
+    
 //	Instantiating Commands that deal with the Drive Train
 	final Drive drive = new Drive();
 	
@@ -72,9 +89,29 @@ public class Robot extends IterativeRobot {
     	ReleaseMechanism.getInstance();
     	Shooter.getInstance();
     	ShooterAim.getInstance();
-    	Commands.getInstance();
     	
-    	Commands.getInstance().BindCommands(Scheduler.getInstance());
+    	aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
+    	aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
+    	
+    	releaseBall = new ReleaseBall();
+    	
+    	goToIntakePosition = new GoToIntakePositionCommand();
+    	goToShootPosition = new GoToShootPositionCommand();
+    	goToTravelPosition = new GoToTravelPosition();
+    	
+    	shooterCommand = new ShooterCommand();
+    	
+    	UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
+        UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
+        
+        UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
+        UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
+        UIConfig.getInstance().travelPositionButton().whenPressed(goToTravelPosition);
+        
+        UIConfig.getInstance().shootBallButton().whileHeld(releaseBall);
+        
+        Scheduler.getInstance().add(shooterCommand);
+        Scheduler.getInstance().add(drive);
     	
     	camera = CameraServer.getInstance();
     	camera.setQuality(50);
