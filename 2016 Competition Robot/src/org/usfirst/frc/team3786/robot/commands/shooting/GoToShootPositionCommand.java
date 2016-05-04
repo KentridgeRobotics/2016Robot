@@ -5,7 +5,7 @@ import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This Command moves the shooter to Shoot position
+ * Class/Command to move the Shooter to 'Shoot Position'
  * @author Manpreet Singh 2016
  *
  */
@@ -21,12 +21,12 @@ public class GoToShootPositionCommand extends Command{
 
 	@Override
 	protected void execute() {
-		ShooterAim.getInstance().moveDown();
+		ShooterAim.getInstance().shootPosition();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return ShooterAim.getInstance().atShootPosition();
 	}
 
 	@Override

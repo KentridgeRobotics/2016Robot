@@ -5,13 +5,10 @@ import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 
 /**
- * <h1>Drive:</h1>
- * <p>
- * 
- * This class handles the drive train during teleop
- * 
+ * Class/Command to Control the drive train of the robot
  * @author Manpreet Singh 2016
  */
 public class Drive extends Command {
@@ -19,6 +16,7 @@ public class Drive extends Command {
     public Drive() {
         // Use requires() here to declare subsystem dependencies
         requires(DriveTrain.getInstance());
+        requires(Shooter.getInstance());
     }
 
     // Called just before this Command runs the first time
@@ -29,7 +27,6 @@ public class Drive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	DriveTrain.getInstance().drive(UIConfig.getInstance().getLeftDrive(), UIConfig.getInstance().getRightDrive());
-    	//DriveTrain.getInstance().drive(-1, 1);
     }
 
     // Make this return true when this Command no longer needs to run execute()

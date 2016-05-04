@@ -5,9 +5,8 @@ import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This Command moves the shooter to Travel position, other wise known as the UP position
+ * Class/Command to move the shooter all the way UP, or to the 'Travel Position'
  * @author Manpreet Singh 2016
- *
  */
 public class GoToTravelPosition extends Command {
 	

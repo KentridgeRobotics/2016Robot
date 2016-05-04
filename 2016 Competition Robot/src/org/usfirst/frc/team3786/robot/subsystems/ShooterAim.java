@@ -4,6 +4,7 @@ import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 
 import edu.wpi.first.wpilibj.CANJaguar;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -19,11 +20,16 @@ public class ShooterAim extends Subsystem{
 	//**************POSITIONS**************
 	public static final double DOWN_POS = 0.5;
 	public static final double UP_POS = 0.0;
-	public static final double SHOOT_POS = 0.2;
+	public static final double SHOOT_POS = 0.3;
 	
 	private static double currentPosition;
-		
+	
+	private static DigitalInput aimSwitch;
+	
 	private ShooterAim() {
+		aimSwitch = new DigitalInput(5);
+		
+		currentPosition = getCurrentPosition();
 		
 		aimMotor = new CANJaguar(RobotConfig.getInstance().ShooterAimChannel());
 		
@@ -44,14 +50,9 @@ public class ShooterAim extends Subsystem{
 		return instance;
 	}
 	
-	/**
-	 * Aim Motor getter object for advanced access 
-	 * @return The Aim Motor object
-	 */
 	public CANJaguar motor() {
 		return aimMotor;
 	}
-	
 	/**
 	 * @param position The position we want the shooter to be
 	 */
@@ -88,8 +89,8 @@ public class ShooterAim extends Subsystem{
 	/**
 	 * <h1>Tells Shooter to retain current position/angle</h1>
 	 * <p>
-	 * This method of retaining position will only work if the encoder is
-	 * reading values properly and returning them to the controller
+	 * This method of retaining position will only work if the encoder
+	 * is reading values properly and return them on the controller
 	 */
 	public void retainCurrentPosition() {
 		aimMotor.set(currentPosition);
@@ -118,10 +119,13 @@ public class ShooterAim extends Subsystem{
 	public double getOutputVoltage() {
 		return aimMotor.getOutputVoltage();
 	}
-		
+	
+	public boolean atShootPosition() {
+		return !aimSwitch.get();
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
-		//This line of code is EVIL, it's sheared like 2 sets of gearbox pins, I'm gonna leave it here for shits and giggles
 		//setDefaultCommand(new ShooterAimCommand(ShooterAimCommand.Mode.RETAIN_POSITION));
 	}
 }

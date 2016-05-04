@@ -5,7 +5,7 @@ import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Class to handle the drive train in autonomous
+ * Class/Command to control the Drive Train during autonomous
  * @author Manpreet Singh 2016
  */
 public class AutonomousDriveCommand extends Command{

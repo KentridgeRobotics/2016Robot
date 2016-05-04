@@ -5,7 +5,7 @@ import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This command moves the shooter to intake position
+ * Class/Command to move the shooter all the way down, or to the 'Intake Position'
  * @author Manpreet Singh 2016
  */
 public class GoToIntakePositionCommand extends Command{

@@ -5,6 +5,10 @@ import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Class to control the shooter wheel speed
+ * @author Manpreet Singh 2016
+ */
 public class ShooterCommand extends Command{
 	
 	public ShooterCommand() {
@@ -18,12 +22,13 @@ public class ShooterCommand extends Command{
 
 	@Override
 	protected void execute() {
-		if(UIConfig.getInstance().getIntakeSpeed() <= -.05)
-			Shooter.getInstance().setSpeed(UIConfig.getInstance().getIntakeSpeed());
-		else if(UIConfig.getInstance().getShootSpeed() >= .05)
+		if(UIConfig.getInstance().getShootSpeed() > 0.05)
 			Shooter.getInstance().setSpeed(UIConfig.getInstance().getShootSpeed());
+		else if(UIConfig.getInstance().getIntakeSpeed() > 0.05)
+			Shooter.getInstance().setSpeed(-UIConfig.getInstance().getIntakeSpeed());
 		else
-			Shooter.getInstance().STOP();
+			Shooter.getInstance().setSpeed(0);
+		
 	}
 
 	@Override
@@ -32,13 +37,11 @@ public class ShooterCommand extends Command{
 	}
 
 	@Override
-	protected void end() {
-		Shooter.getInstance().STOP();
+	protected void end() {		
 	}
 
 	@Override
 	protected void interrupted() {
-		end();
 	}
-	
+
 }

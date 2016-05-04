@@ -10,7 +10,6 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 import org.usfirst.frc.team3786.robot.commands.auto.DoNothing;
 import org.usfirst.frc.team3786.robot.commands.auto.DriveForwards;
-import org.usfirst.frc.team3786.robot.commands.auto.LowBarAutonomousCommandGroup;
 import org.usfirst.frc.team3786.robot.commands.drive.Drive;
 import org.usfirst.frc.team3786.robot.commands.shooting.GoToIntakePositionCommand;
 import org.usfirst.frc.team3786.robot.commands.shooting.GoToShootPositionCommand;
@@ -21,7 +20,6 @@ import org.usfirst.frc.team3786.robot.commands.shooting.ShooterCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 import org.usfirst.frc.team3786.robot.config.ui.UIConfig;
 import org.usfirst.frc.team3786.robot.subsystems.DriveTrain;
-//import org.usfirst.frc.team3786.robot.subsystems.NewShooter;
 import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
 import org.usfirst.frc.team3786.robot.subsystems.Shooter;
 import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
@@ -35,31 +33,31 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * documentation. If you change the name of this class or the package after
  * creating this project, you must also update the manifest file in the resource
  * directory.
+ * 
+ * @author Manpreet Singh 2016
  */
 public class Robot extends IterativeRobot {
 
     Command autonomousCommand;
     SendableChooser chooser;
     
-    CameraServer camera;	
-	
-    ShooterAimCommand aimUpCommand;
-	ShooterAimCommand aimDownCommand;
-	
-	ReleaseBall releaseBall;
-	
-	GoToIntakePositionCommand goToIntakePosition;
-	GoToShootPositionCommand goToShootPosition;
-	GoToTravelPosition goToTravelPosition;
-	
-	ShooterCommand shooterCommand;
+    private CameraServer camera;
     
+//  Declaring Commands that deal with the Shooter
+	private ShooterAimCommand aimUpCommand;
+	private ShooterAimCommand aimDownCommand;
+	private ReleaseBall releaseBall;
+	private GoToIntakePositionCommand goToIntakePosition;
+	private GoToShootPositionCommand goToShootPosition;
+	private GoToTravelPosition goToTravelPosition;
+	
+	private ShooterCommand shooterCommand;
+	
 //	Instantiating Commands that deal with the Drive Train
 	final Drive drive = new Drive();
 	
 	final DriveForwards driveForward = new DriveForwards();
 	final DoNothing doNothing = new DoNothing();
-	final LowBarAutonomousCommandGroup lowBarAuto = new LowBarAutonomousCommandGroup();
 	
 	private final String[] splash = {
 			" __   __  __   __  ______   _______  ______    _______  _______ ",
@@ -90,44 +88,40 @@ public class Robot extends IterativeRobot {
     	Shooter.getInstance();
     	ShooterAim.getInstance();
     	
+    	camera = CameraServer.getInstance();
+    	camera.setQuality(50);
+    	camera.startAutomaticCapture("cam0");
+    	    	
     	aimUpCommand = new ShooterAimCommand(ShooterAimCommand.Mode.UP);
     	aimDownCommand = new ShooterAimCommand(ShooterAimCommand.Mode.DOWN);
-    	
     	releaseBall = new ReleaseBall();
-    	
     	goToIntakePosition = new GoToIntakePositionCommand();
     	goToShootPosition = new GoToShootPositionCommand();
     	goToTravelPosition = new GoToTravelPosition();
     	
     	shooterCommand = new ShooterCommand();
     	
-    	UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
+        UIConfig.getInstance().aimDownButton().whileHeld(aimDownCommand);
         UIConfig.getInstance().aimUpButton().whileHeld(aimUpCommand);
-        
         UIConfig.getInstance().shootPositionButton().whenPressed(goToShootPosition);
         UIConfig.getInstance().intakePositionButton().whenPressed(goToIntakePosition);
         UIConfig.getInstance().travelPositionButton().whenPressed(goToTravelPosition);
+        UIConfig.getInstance().shootBall().whileHeld(releaseBall);
         
-        UIConfig.getInstance().shootBallButton().whileHeld(releaseBall);
+        SmartDashboard.putData("Shoot Ball Command", releaseBall);
+        SmartDashboard.putData("Shooter Aim", ShooterAim.getInstance());
         
-        Scheduler.getInstance().add(shooterCommand);
-        Scheduler.getInstance().add(drive);
-    	
-    	camera = CameraServer.getInstance();
-    	camera.setQuality(50);
-    	camera.startAutomaticCapture("cam0");
-    	        
         chooser = new SendableChooser();
         chooser.addDefault("Do Nothing", doNothing);
         chooser.addDefault("Drive", driveForward);
-        chooser.addDefault("Low Bar Auto", lowBarAuto);
         
         SmartDashboard.putData("Select Autonomous", chooser);
-                
+        
+        Scheduler.getInstance().add(drive);
+        Scheduler.getInstance().add(shooterCommand);
+        
         SmartDashboard.putData(Scheduler.getInstance());
-        
-        Timer.delay(.005);
-        
+        Timer.delay(.01);
         for(String s : splash) 
         	System.out.println(s);
         
@@ -176,15 +170,16 @@ public class Robot extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         if (autonomousCommand != null) autonomousCommand.cancel();
+        ShooterAim.getInstance().shootPosition();
     }
-    
     /**
      * This function is called periodically during operator control
      */
+    double currentPosition;
     public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 		
-		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().getPosition());	
+		SmartDashboard.putNumber("Shooter Position", ShooterAim.getInstance().motor().getPosition());	
 		SmartDashboard.putNumber("Bus Output", ShooterAim.getInstance().getOutputVoltage());
 		SmartDashboard.putBoolean("Forward Limit", ShooterAim.getInstance().getForwardLimit());
 		SmartDashboard.putBoolean("Reverse Limit", ShooterAim.getInstance().getBackLimit());

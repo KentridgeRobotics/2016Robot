@@ -5,7 +5,7 @@ import org.usfirst.frc.team3786.robot.subsystems.ReleaseMechanism;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This Command tells the Ginsu Knives to push the ball into the spinny bits
+ * Class/Command to release the ball from the shooter
  * @author Manpreet Singh 2016
  */
 public class ReleaseBall extends Command{
@@ -37,6 +37,6 @@ public class ReleaseBall extends Command{
 
 	@Override
 	protected void interrupted() {
-		ReleaseMechanism.getInstance().retract();
+		end();
 	}
 }

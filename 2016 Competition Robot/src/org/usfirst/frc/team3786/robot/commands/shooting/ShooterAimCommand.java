@@ -5,9 +5,8 @@ import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * This Command/Class handles moving the shooter up, down, and holding position.
+ * Class/Command to control the movement of the shooter mechanism
  * @author Manpreet Singh 2016
- *
  */
 public class ShooterAimCommand extends Command{
 	
@@ -17,6 +16,7 @@ public class ShooterAimCommand extends Command{
 	public ShooterAimCommand(Mode mode) {
 		requires(ShooterAim.getInstance());
 		this.currentMode = mode;
+		System.out.println("Shooter Aim Command Contructor reached");
 	}
 	
 	@Override
@@ -40,8 +40,7 @@ public class ShooterAimCommand extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
-		return false;
+		return (!ShooterAim.getInstance().motor().getForwardLimitOK() || !ShooterAim.getInstance().motor().getReverseLimitOK());
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3786.robot.subsystems;
 
+import org.usfirst.frc.team3786.robot.commands.shooting.ShooterCommand;
 import org.usfirst.frc.team3786.robot.config.robot.RobotConfig;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -32,12 +33,13 @@ public class Shooter extends Subsystem{
 		return instance;
 	}
 	
-	public void setSpeed(double speed) {
+	public void setSpeed(double speed){
 		shooterWheels.set(speed);
 	}
 	
 	/**
 	 * Spin Shooter Wheels to full speed
+	 * I don't know why i wrote this method, i just did 
 	 */
 	public void fullSpeedAhead() {
 		shooterWheels.set(1);
@@ -88,6 +90,6 @@ public class Shooter extends Subsystem{
 		
 	@Override
 	protected void initDefaultCommand() {
-		//setDefaultCommand(new StopShooter());
+		setDefaultCommand(new ShooterCommand());
 	}
 }

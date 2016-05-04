@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Made up, but never used subsystem to control the entire shooter
+ * Made up never used subsystem to control the entire shooter
  * This might've been a better way to code the shooter
  * @author Nate Chapman and Manpreet Singh 2016
  */

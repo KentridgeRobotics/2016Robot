@@ -4,6 +4,10 @@ import org.usfirst.frc.team3786.robot.subsystems.ShooterAim;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ * Class/Command to control the shooter during autonomous
+ * @author Manpreet Singh 2016
+ */
 public class AutonomousShooterCommand extends Command{
 	
 	private double position;

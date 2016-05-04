@@ -4,6 +4,8 @@ package org.usfirst.frc.team3786.robot.config.robot;
  * to a variable name. This provides flexibility changing wiring, makes checking
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
+ * 
+ * @author Manpreet Singh 2016
  */
 public abstract class RobotConfig {
 	
@@ -57,5 +59,8 @@ public abstract class RobotConfig {
 	public abstract int elevatationUpperLimitID();
 	public abstract int elevatationBottomLimitID();
 	
+	//-------------Lift Mechanism-------------
+	public abstract int getLiftOneChan();
+	public abstract int getLifttwoChan();
 	
 }

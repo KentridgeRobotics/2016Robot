@@ -1,5 +1,12 @@
 package org.usfirst.frc.team3786.robot.config.robot;
 
+/**
+ * This Class inherits the abstract method from RobotConfig and provides
+ * implementations.
+ * NOTE: Multiple version of the robot can be created this way.
+ * Just point the instance of RobotConfig to the file you want to use for robot config
+ * @author Manpreet Singh 2016
+ */
 public class CompetitionRobotConfig extends RobotConfig{
 	//***************START***************
 	
@@ -27,19 +34,23 @@ public class CompetitionRobotConfig extends RobotConfig{
 	private static final int ELEVATION_LIMIT_BOTTOM = 0;
 	
 	//Shooter PID
-	private static final double SHOOTER_P_DEF = 600;
+	private static final double SHOOTER_P_DEF = 400;
 	private static final double SHOOTER_I_DEF = 0;
 	private static final double SHOOTER_D_DEF = 150;
 	
-	private static final double SHOOTER_P_UP = 600;
-	private static final double SHOOTER_P_DOWN = 400;
+	private static final double SHOOTER_P_UP = 700;
+	private static final double SHOOTER_P_DOWN = 500;
 	
 	private static final double SHOOTER_I_UP = 0;
 	private static final double SHOOTER_I_DOWN = 0;
 	
 	private static final double SHOOTER_D_UP = SHOOTER_P_UP/4;
 	private static final double SHOOTER_D_DOWN = SHOOTER_P_DOWN/2;
-		
+	
+	//Lifter Mechanisms
+	private static final int LIFT_ONE = 0;
+	private static final int LIFT_TWO = 0;
+	
 	//****************END****************
 	
 	@Override
@@ -120,6 +131,16 @@ public class CompetitionRobotConfig extends RobotConfig{
 	@Override
 	public int elevatationBottomLimitID() {
 		return ELEVATION_LIMIT_BOTTOM;
+	}
+
+	@Override
+	public int getLiftOneChan() {
+		return LIFT_ONE;
+	}
+
+	@Override
+	public int getLifttwoChan() {
+		return LIFT_TWO;
 	}
 
 	@Override
